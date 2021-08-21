@@ -5,9 +5,9 @@ function streetmixUserToAPI (userURL) { // eslint-disable-line no-unused-vars
   const creatorId = pathArray[1];
   const namespacedId = pathArray[2];
   if (creatorId === '-') {
-    return 'http://localhost:8000/api/v1/streets?namespacedId=' + namespacedId;
+    return 'https://streetmix.net/api/v1/streets?namespacedId=' + namespacedId;
   } else {
-    return 'http://localhost:8000/api/v1/streets?namespacedId=' + namespacedId + '&creatorId=' + creatorId;
+    return 'https://streetmix.net/api/v1/streets?namespacedId=' + namespacedId + '&creatorId=' + creatorId;
   }
 }
 module.exports.streetmixUserToAPI = streetmixUserToAPI;
