@@ -111,7 +111,7 @@
 
         </a-slide>
       </a-presentation>
-      <a-entity id="cameraRig">
+      <a-entity id="cameraRig" position="0 0 -75">
         <a-entity id="camera" camera="far: 1000; zoom: 20" wasd-controls="enabled: false" 
         animation__zoomin="property: camera.zoom; from: 1; to: 22; dur: 7000; easing: easeInOutQuad; "
         animation__zoominfast="property: camera.zoom; from: 1; to: 40; dur: 100; easing: linear; autoplay: false;"
@@ -132,10 +132,12 @@
       animation="property: visible; from: false; to: true; dur: 3000;"
       ></a-entity>
 
-      <a-entity id="street-parent" street streetmix-loader set-loader-from-hash="defaultURL: https://streetmix.net/kfarr/3"></a-entity>
+      <a-entity id="street-parent" street streetmix-loader="streetmixStreetURL: https://streetmix.net/kfarr/3"></a-entity>
+
+      <a-entity position="0 0 -160" id="street-parent" street streetmix-loader="streetmixStreetURL: https://streetmix.net/kfarr/60"></a-entity>
 
       <!-- Label text -->
-      <a-entity id="labelParent1" scale="3 3 3" position="-14 40 15" rotation="-90 0 0" visible="false">
+      <!--<a-entity id="labelParent1" scale="3 3 3" position="-14 40 15" rotation="-90 0 0" visible="false">
         <a-entity position="0 1 0" geometry="primitive: plane; width: 10; height: auto" material="src: #subtitle; alphaTest: 0.; transparent: true;"
                   text="color: white; align: left; value: Plan View (Isometric); width: 10; ">
           <a-entity position="-5.1 0 0.001" geometry="primitive: plane; width: 0.1; height: 0.46" material="color: #c900c9;"></a-entity>
@@ -144,10 +146,10 @@
                   text="color: white; align: left; value: 17th Street Existing Conditions; width: 20; ">
           <a-entity position="-10.1 0 0.001" geometry="primitive: plane; width: 0.1; height: 0.92" material="color: #c900c9;"></a-entity>
         </a-entity>
-      </a-entity>
+      </a-entity>-->
 
       <!-- Label text -->
-      <a-entity id="labelParent2" scale="1 1 1" position="-5 23 5" rotation="-90 0 0" visible="false">
+      <!--<a-entity id="labelParent2" scale="1 1 1" position="-5 23 5" rotation="-90 0 0" visible="false">
         <a-entity position="0 1 0" geometry="primitive: plane; width: 10; height: auto" material="src: #subtitle; alphaTest: 0.; transparent: true;"
                   text="color: white; align: left; value: Plan View (Perspective); width: 10; ">
           <a-entity position="-5.1 0 0.001" geometry="primitive: plane; width: 0.1; height: 0.46" material="color: #c900c9;"></a-entity>
@@ -156,7 +158,7 @@
                   text="color: white; align: left; value: 17th Street Existing Conditions; width: 20; ">
           <a-entity position="-10.1 0 0.001" geometry="primitive: plane; width: 0.1; height: 0.92" material="color: #c900c9;"></a-entity>
         </a-entity>
-      </a-entity>
+      </a-entity>-->
       <!-- For debugging / validation: below are bounding boxes based on vehicle specs available online -->
       <!-- <a-entity id="ford-crown-vic-bounding" geometry="depth: 5.3; height: 1.448; width: 1.99" position="0.92059 0.74 0"></a-entity>
       <a-entity id="newflyer-XD40-bounding" geometry="depth: 12; height: 3.2; width: 2.59" position="-3.97 1.59 0"></a-entity>

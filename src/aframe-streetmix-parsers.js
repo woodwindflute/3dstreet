@@ -462,7 +462,7 @@ function processSegments (segments, showStriping, length) {
       // add this stencil stuff to the segment parent
       segmentParentEl.append(reusableObjectStencilsParentEl);
     } else if (segments[i].type === 'drive-lane') {
-      segmentParentEl.append(createCarAndShadowElements(variantList, positionX));
+      //segmentParentEl.append(createCarAndShadowElements(variantList, positionX));
     } else if (segments[i].type === 'sidewalk-wayfinding') {
       segmentParentEl.append(createWayfindingElements(positionX));
     } else if (segments[i].type === 'sidewalk-bench') {
