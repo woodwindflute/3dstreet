@@ -60,13 +60,9 @@ AFRAME.registerComponent('streetmix-loader', {
     }
 
     var request = new XMLHttpRequest();
-    const settings = JSON.parse(localStorage.getItem('settings'))
-    const creator = settings.lastStreetCreatorId
-    const streetId = settings.lastStreetNamespacedId
-    streetmixAPIURL = 'http://localhost:8000/api/v1/streets?namespacedId=' + streetId + '&creatorId=' + creator
-    console.log('[streetmix-loader]', 'GET ' + streetmixAPIURL);
+    console.log('[streetmix-loader]', 'GET ' + data.streetmixAPIURL);
 
-    request.open('GET', streetmixAPIURL, true);
+    request.open('GET', data.streetmixAPIURL, true);
     request.onload = function () {
       if (this.status >= 200 && this.status < 400) {
         // Connection success
