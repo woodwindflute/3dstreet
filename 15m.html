@@ -4,33 +4,9 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="./dist/aframe-street-component.js"></script>
 
-    <!-- user controls -->
-    <script src="https://raw.githack.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-    <script src="src/lib/aframe-orbit-controls.min.js"></script>
-
     <!-- ocean, ground, sky -->
     <script src="src/components/ocean-plane.js"></script>
     <script src="src/lib/aframe-cubemap-component.js"></script>
-
-    <!-- 2d ui toolbar -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    />
-
-    <!-- move a-frame performance `stats` below toolbar -->
-    <style>
-      .rs-base {
-        left: 20px;
-        top: 80px;
-      }
-    </style>
   </head>
 
   <body>
@@ -52,8 +28,8 @@
         </a-cubemap>
 
         <img
-          id="grass-texture"
-          src="assets/materials/TexturesCom_Grass0052_1_seamless_S.jpg"
+          id="ground-texture"
+          src="assets/materials/TexturesCom_AsphaltDamaged0057_1_seamless_S.jpg"
         />
         <img
           id="markings-atlas"
@@ -112,12 +88,12 @@
 
       <a-entity id="skybox" cubemap="folder: assets/images/skybox/"></a-entity>
 
-      
+      <!--漸變帶兩邊地板-->
       <a-entity
         position="0 -0.5 -100"
         rotation="-90 0 0"
         geometry="primitive:plane;height:350;width:350"
-        material="src:#grass-texture;repeat:5 5;roughness:1"
+        material="src:#ground-texture;repeat:5 5;roughness:1"
       ></a-entity>
       
       <!--雙黃線-->
@@ -143,7 +119,7 @@
       <!--Two Street-->
       <a-entity
         id="street-parent"
-        street='left: grass; right: grass; JSON:
+        street='left: narrow; right: narrow; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -156,7 +132,7 @@
       <a-entity
         position="0 0 -174"
         id="street-parent"
-        street='left: grass; right: grass; JSON:
+        street='left: narrow; right: narrow; JSON:
         {
         "streetmixSegmentsFeet": [
         {"width":8.33333,"type":"sidewalk","variantString":"dense"},

@@ -4,59 +4,9 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="./dist/aframe-street-component.js"></script>
 
-    <!-- user controls -->
-    <script src="https://raw.githack.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-    <script src="src/lib/aframe-orbit-controls.min.js"></script>
-
     <!-- ocean, ground, sky -->
     <script src="src/components/ocean-plane.js"></script>
     <script src="src/lib/aframe-cubemap-component.js"></script>
-
-    <!-- 2d ui toolbar -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    />
-
-    <!-- move a-frame performance `stats` below toolbar -->
-    <style>
-      .rs-base {
-        left: 20px;
-        top: 80px;
-      }
-    </style>
-    <script>
-      AFRAME.registerGeometry('example', {
-        schema: {
-          vertices: {
-            default: ['-10 10 0', '-10 -10 0', '10 -10 0'],
-          }
-        },
-
-        init: function (data) {
-          var geometry = new THREE.BufferGeometry();
-          var positions=[]
-          //var vertices = new Float32Array( [1, 10, 10, 1, -10, 10, 1, 10, -10, 1, -10, 10, 1, -10, -10, 1, 10,-10] );
-          var vertices = new Float32Array( [1, 1, -3, 3, 1, -3, 4, 3, -3, 1, 1, -3, 2, 3, -3, 4, 3, -3] );
-          var vex = data.vertices.map(function (vertex) {
-            var points = vertex.split(' ').map(function(x){return parseFloat(x);});
-            positions.push(points[0])
-            positions.push(points[1])
-            positions.push(points[2])
-            return positions;
-          });
-          geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
-          geometry.computeVertexNormals();
-          this.geometry = geometry; 
-        }
-      });
-    </script>
   </head>
 
   <body>
@@ -78,8 +28,8 @@
         </a-cubemap>
 
         <img
-          id="grass-texture"
-          src="assets/materials/TexturesCom_Grass0052_1_seamless_S.jpg"
+          id="ground-texture"
+          src="assets/materials/TexturesCom_AsphaltDamaged0057_1_seamless_S.jpg"
         />
         <img
           id="markings-atlas"
@@ -141,12 +91,12 @@
 
       <a-entity id="skybox" cubemap="folder: assets/images/skybox/"></a-entity>
 
-      <!--草地-->
+      <!--漸變帶兩邊地板-->
       <a-entity
         position="0 -0.5 -100"
         rotation="-90 0 0"
         geometry="primitive:plane;height:350;width:350"
-        material="src:#grass-texture;repeat:5 5;roughness:1"
+        material="src:#ground-texture;repeat:5 5;roughness:1"
       ></a-entity>
 
       <!--雙黃線-->
@@ -190,7 +140,7 @@
       
       <a-entity
         id="street-parent"
-        street='left: grass; right: grass; JSON:
+        street='left: narrow; right: narrow; JSON:
         {
           "streetmixSegmentsFeet": [
           {"id":"DlsAZWDK4PodepfyYRb8d","type":"sidewalk","variantString":"dense","width":8.33333},
@@ -205,7 +155,7 @@
       <a-entity
         position="0 0 -198"
         id="street-parent"
-        street='left: grass; right: grass; JSON:
+        street='left: narrow; right: narrow; JSON:
         {
           "streetmixSegmentsFeet": [
           {"id":"DlsAZWDK4PodepfyYRb8d","type":"sidewalk","variantString":"dense","width":8.33333},
@@ -215,8 +165,7 @@
           {"id":"NyYdKNlJ8fEY2pxUW23fl","type":"drive-lane","variantString":"outbound|car","width":15},
           {"id":"zx9bQ9Evt-P1EgitAXpqV","type":"sidewalk","variantString":"dense","width":8.33333}
           ]
-        }
-        '
+        }'
       ></a-entity>
     </a-scene>
   </body>
