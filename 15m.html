@@ -28,8 +28,8 @@
         </a-cubemap>
 
         <img
-          id="ground-texture"
-          src="assets/materials/TexturesCom_AsphaltDamaged0057_1_seamless_S.jpg"
+          id="grass-texture"
+          src="assets/materials/TexturesCom_Grass0052_1_seamless_S.jpg"
         />
         <img
           id="markings-atlas"
@@ -93,7 +93,7 @@
         position="0 -0.5 -100"
         rotation="-90 0 0"
         geometry="primitive:plane;height:350;width:350"
-        material="src:#ground-texture;repeat:5 5;roughness:1"
+        material="src:#grass-texture;repeat:5 5;roughness:1"
       ></a-entity>
       
       <!--雙黃線-->
@@ -119,7 +119,7 @@
       <!--Two Street-->
       <a-entity
         id="street-parent"
-        street='left: narrow; right: narrow; JSON:
+        street='left: grass; right: grass; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -132,7 +132,7 @@
       <a-entity
         position="0 0 -174"
         id="street-parent"
-        street='left: narrow; right: narrow; JSON:
+        street='left: grass; right: grass; JSON:
         {
         "streetmixSegmentsFeet": [
         {"width":8.33333,"type":"sidewalk","variantString":"dense"},

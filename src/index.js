@@ -26,7 +26,9 @@ AFRAME.registerComponent('street', {
     }
 
     const streetmixSegments = JSON.parse(data.JSON);
+    console.log(streetmixSegments);
     const streetEl = streetmixParsers.processSegments(streetmixSegments.streetmixSegmentsFeet, data.showStriping, data.length);
+    console.log(streetEl);
     this.el.append(streetEl);
 
     if (data.left || data.right) {

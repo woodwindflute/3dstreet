@@ -608,7 +608,7 @@ function processBuildings (left, right, streetWidth, showGround, length) {
       buildingElement.appendChild(groundParentEl);
     }
 
-    if (currentValue === 'narrow' || currentValue === 'wide') {
+    if (currentValue === 'narrow' || currentValue === 'wide' || currentValue === 'grass') {
       // make buildings
       const buildingsArray = streetmixParsersTested.createBuildingsArray(buildingLotWidth);
 
