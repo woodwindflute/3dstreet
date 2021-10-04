@@ -5,9 +5,9 @@ function streetmixUserToAPI (userURL) { // eslint-disable-line no-unused-vars
   const creatorId = pathArray[1];
   const namespacedId = pathArray[2];
   if (creatorId === '-') {
-    return 'http://localhost:8000/api/v1/streets?namespacedId=' + namespacedId;
+    return 'http://' + location.host + '/api/v1/streets?namespacedId=' + namespacedId;
   } else {
-    return 'http://localhost:8000/api/v1/streets?namespacedId=' + namespacedId + '&creatorId=' + creatorId;
+    return 'http://' + location.host + '/api/v1/streets?namespacedId=' + namespacedId + '&creatorId=' + creatorId;
   }
 }
 module.exports.streetmixUserToAPI = streetmixUserToAPI;
@@ -44,7 +44,7 @@ function streetmixAPIToUser (APIURL) { // eslint-disable-line no-unused-vars
     creatorId = '-';
   }
 
-  return 'http://localhost:8000/' + creatorId + '/' + namespacedId;
+  return 'http://' + location.host + '/' + creatorId + '/' + namespacedId;
 }
 module.exports.streetmixAPIToUser = streetmixAPIToUser;
 
