@@ -93,6 +93,15 @@ function insertSeparatorSegments (segments) {
         if (currentValue.type === 'bike-lane' && previousValue.type === 'bike-lane') {
           variantString = 'shortdashedyellow';
         }
+        if (currentValue.type === 'turn-lane' && previousValue.type === 'parking-lane' || currentValue.type === 'parking-lane' && previousValue.type === 'turn-lane') {
+          variantString = 'solidyellow';
+        }
+        if (currentValue.type === 'drive-lane' && previousValue.type === 'parking-lane' || currentValue.type === 'parking-lane' && previousValue.type === 'drive-lane') {
+          variantString = 'solidyellow';
+        }
+        if (currentValue.type === 'parking-lane' && previousValue.type === 'parking-lane') {
+          variantString = '';
+        }
       }
 
       // special case -- if either lanes are turn lane shared, then use solid and long dash
@@ -434,7 +443,7 @@ function processSegments (segments, showStriping, length) {
       }
     } else if (segments[i].type === 'divider' && variantList[0] === 'bollard') {
       mixinId = 'divider';
-
+      
       // make some safehits
       const safehitsParentEl = createSafehitsParentElement(positionX);
       cloneMixinAsChildren({ objectMixinId: 'safehit', parentEl: safehitsParentEl, step: 4, radius: clonedObjectRadius });
@@ -535,6 +544,10 @@ function processSegments (segments, showStriping, length) {
       scaleX = 1;
     } else if (segments[i].type === 'separator' && variantList[0] === 'solid') {
       mixinId = 'markings solid-stripe';
+      positionY = positionY + 0.01; // make sure the lane marker is above the asphalt
+      scaleX = 1;
+    } else if (segments[i].type === 'separator' && variantList[0] === 'solidyellow') {
+      mixinId = 'markings solid-yellow';
       positionY = positionY + 0.01; // make sure the lane marker is above the asphalt
       scaleX = 1;
     } else if (segments[i].type === 'separator' && variantList[0] === 'doubleyellow') {

@@ -59,6 +59,7 @@
           <!-- lane separator markings atlas -->
           <a-mixin id="markings" anisotropy atlas-uvs="totalRows: 1; totalColumns: 8; row: 1" scale="1 1 1" material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 25;" geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:150;"></a-mixin>
           <a-mixin id="solid-stripe-t1" atlas-uvs="column: 3"></a-mixin>
+          <a-mixin id="solid-yellow-t1" atlas-uvs="column: 5"></a-mixin>
           <a-mixin id="dashed-stripe-t1" atlas-uvs="column: 4"></a-mixin>
           <a-mixin id="short-dashed-stripe-t1" atlas-uvs="column: 4" material="repeat:1 50;"></a-mixin>
           <a-mixin id="solid-doubleyellow-t1" atlas-uvs="totalColumns: 4; column: 3" geometry="width: 0.5"></a-mixin>
