@@ -82,22 +82,22 @@
 
       <a-entity id="skybox" cubemap="folder: assets/images/skybox/"></a-entity>
 
-      <a-entity>
+      <a-entity id="main">
         <!--馬路 由左至右-->
         <a-triangle
           position="0 0 -76"
           material="side:double;repeat:0.3 1;offset:0.55 0"
           src="#drive-lane-texture"
           vertex-a="-4.6 0 1"
-          vertex-b="-5.1 0 -23"
+          vertex-b="-5.1 0 -38"
           vertex-c="0 0 1"
         ></a-triangle>
         <a-triangle
           position="0 0 -76"
           material="side:double;repeat:0.3 1;offset:0.55 0"
           src="#drive-lane-texture"
-          vertex-a="-5.1 0 -23"
-          vertex-b="-1.5 0 -23"
+          vertex-a="-5.1 0 -38"
+          vertex-b="-1.5 0 -38"
           vertex-c="0 0 1"
         ></a-triangle>
 
@@ -106,15 +106,15 @@
           material="side:double;repeat:0.3 1;offset:0.55 0"
           src="#drive-lane-texture"
           vertex-a="0 0 1"
-          vertex-b="-1.5 0 -24"
+          vertex-b="-1.5 0 -38"
           vertex-c="2.25 0 1"
         ></a-triangle>
         <a-triangle
           position="0 0 -76"
           material="side:double;repeat:0.3 1;offset:0.55 0"
           src="#drive-lane-texture"
-          vertex-a="-1.5 0 -23"
-          vertex-b="1.5 0 -23"
+          vertex-a="-1.5 0 -38"
+          vertex-b="1.5 0 -38"
           vertex-c="2.25 0 1"
         ></a-triangle>
 
@@ -124,14 +124,14 @@
           src="#drive-lane-texture"
           vertex-a="2.25 0 1"
           vertex-b="4.6 0 1"
-          vertex-c="1.5 0 -23"
+          vertex-c="1.5 0 -38"
         ></a-triangle>
         <a-triangle
           position="0 0 -76"
           material="side:double;repeat:0.3 1;offset:0.55 0"
           src="#drive-lane-texture"
-          vertex-a="1.5 0 -23"
-          vertex-b="5.1 0 -23"
+          vertex-a="1.5 0 -38"
+          vertex-b="5.1 0 -38"
           vertex-c="4.6 0 1"
         ></a-triangle>
         <!--馬路結束-->
@@ -142,15 +142,15 @@
           material="side:double;repeat:1.5 15;offset:0.55 0"
           src="#sidewalk-texture"
           vertex-a="-7.6 0 1"
-          vertex-b="-7.6 0 -23"
+          vertex-b="-7.6 0 -38"
           vertex-c="-4.6 0 1"
         ></a-triangle>
         <a-triangle
           position="0 0 -76"
           material="side:double;repeat:1.5 15;offset:0.55 0"
           src="#sidewalk-texture"
-          vertex-a="-7.6 0 -23"
-          vertex-b="-5.1 0 -23"
+          vertex-a="-7.6 0 -38"
+          vertex-b="-5.1 0 -38"
           vertex-c="-4.6 0 1"
         ></a-triangle>
 
@@ -159,15 +159,15 @@
           material="side:double;repeat:1.5 15;offset:0.55 0"
           src="#sidewalk-texture"
           vertex-a="4.6 0 1"
-          vertex-b="5.1 0 -23"
+          vertex-b="5.1 0 -38"
           vertex-c="7.6 0 1"
         ></a-triangle>
         <a-triangle
           position="0 0 -76"
           material="side:double;repeat:1.5 15;offset:0.55 0"
           src="#sidewalk-texture"
-          vertex-a="5.1 0 -23"
-          vertex-b="7.6 0 -23"
+          vertex-a="5.1 0 -38"
+          vertex-b="7.6 0 -38"
           vertex-c="7.6 0 1"
         ></a-triangle>
         <!--人行道結束-->
@@ -189,136 +189,11 @@
           material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 25;"
           geometry="primitive: plane; buffer: false; skipCache: true; width:0.5; height:24;"
         ></a-entity>
-
-        <!--馬路虛線-->
         <a-entity
-          position="2 0.01 -87"
-          rotation="-90 0 1.79"
-          atlas-uvs="totalRows: 1; totalColumns: 8; row: 1; column: 4"
-          scale="1 1 1"
-          material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 4;"
-          geometry="primitive: plane; buffer: false; skipCache: true; width:0.20; height:24;"
-        ></a-entity>
-
-        <!--Two Street-->
-        <a-entity
-          id="street-parent"
-          street='left: grass; right: grass; JSON:
-        {
-          "streetmixSegmentsFeet": [
-          {"width":10,"type":"sidewalk","variantString":"dense"},
-          {"width":15,"type":"drive-lane","variantString":"inbound|car"},
-          {"width":15,"type":"drive-lane","variantString":"outbound|car"},
-          {"width":10,"type":"sidewalk","variantString":"dense"}
-          ]
-        }'
-        ></a-entity>
-
-        <a-image
-          id="intersection1"
-          position="0 0 -106.5"
-          rotation="-90 90 0"
-          scale="15 15.2 0"
-          src="assets/images/15m.png"
-        ></a-image>
-      </a-entity>
-
-      <a-entity position="0 0 -243" rotation="0 180 0">
-        <!--馬路 由左至右-->
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:0.3 1;offset:0.55 0"
-          src="#drive-lane-texture"
-          vertex-a="-4.6 0 1"
-          vertex-b="-5.1 0 -23"
-          vertex-c="0 0 1"
-        ></a-triangle>
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:0.3 1;offset:0.55 0"
-          src="#drive-lane-texture"
-          vertex-a="-5.1 0 -23"
-          vertex-b="-1.5 0 -23"
-          vertex-c="0 0 1"
-        ></a-triangle>
-
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:0.3 1;offset:0.55 0"
-          src="#drive-lane-texture"
-          vertex-a="0 0 1"
-          vertex-b="-1.5 0 -24"
-          vertex-c="2.25 0 1"
-        ></a-triangle>
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:0.3 1;offset:0.55 0"
-          src="#drive-lane-texture"
-          vertex-a="-1.5 0 -23"
-          vertex-b="1.5 0 -23"
-          vertex-c="2.25 0 1"
-        ></a-triangle>
-
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:0.3 1;offset:0.55 0"
-          src="#drive-lane-texture"
-          vertex-a="2.25 0 1"
-          vertex-b="4.6 0 1"
-          vertex-c="1.5 0 -23"
-        ></a-triangle>
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:0.3 1;offset:0.55 0"
-          src="#drive-lane-texture"
-          vertex-a="1.5 0 -23"
-          vertex-b="5.1 0 -23"
-          vertex-c="4.6 0 1"
-        ></a-triangle>
-        <!--馬路結束-->
-
-        <!--人行道 由左至右-->
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:1.5 15;offset:0.55 0"
-          src="#sidewalk-texture"
-          vertex-a="-7.6 0 1"
-          vertex-b="-7.6 0 -23"
-          vertex-c="-4.6 0 1"
-        ></a-triangle>
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:1.5 15;offset:0.55 0"
-          src="#sidewalk-texture"
-          vertex-a="-7.6 0 -23"
-          vertex-b="-5.1 0 -23"
-          vertex-c="-4.6 0 1"
-        ></a-triangle>
-
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:1.5 15;offset:0.55 0"
-          src="#sidewalk-texture"
-          vertex-a="4.6 0 1"
-          vertex-b="5.1 0 -23"
-          vertex-c="7.6 0 1"
-        ></a-triangle>
-        <a-triangle
-          position="0 0 -76"
-          material="side:double;repeat:1.5 15;offset:0.55 0"
-          src="#sidewalk-texture"
-          vertex-a="5.1 0 -23"
-          vertex-b="7.6 0 -23"
-          vertex-c="7.6 0 1"
-        ></a-triangle>
-        <!--人行道結束-->
-
-        <!--雙黃線-->
-        <a-entity
-          position="-0.75 0.01 -87"
-          rotation="-90 0 3.576"
+          position="-1.5 0.01 -106.4"
+          rotation="-90 0 0"
           atlas-uvs="totalColumns: 4; column: 3"
-          scale="1 1 1"
+          scale="1 0.62 1"
           material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 25;"
           geometry="primitive: plane; buffer: false; skipCache: true; width:0.5; height:24;"
         ></a-entity>
@@ -333,10 +208,192 @@
           geometry="primitive: plane; buffer: false; skipCache: true; width:0.20; height:24;"
         ></a-entity>
 
-        <!--Two Street-->
+        <a-entity
+        position="1.63 0.01 -106.4"
+        rotation="-90 0 0"
+        atlas-uvs="totalColumns: 8; column: 4"
+        scale="1 1 1"
+        material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 2.5;"
+        geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:14"
+      ></a-entity>
+
         <a-entity
           id="street-parent"
-          street='showGround: false; left: wide; right: wide; JSON:
+          street='left: grass; right: grass; JSON:
+        {
+          "streetmixSegmentsFeet": [
+          {"width":10,"type":"sidewalk","variantString":"dense"},
+          {"width":15,"type":"drive-lane","variantString":"inbound|car"},
+          {"width":15,"type":"drive-lane","variantString":"outbound|car"},
+          {"width":10,"type":"sidewalk","variantString":"dense"}
+          ]
+        }'
+        ></a-entity>
+      </a-entity>
+
+      <a-entity position="0 0 -243" rotation="0 180 0">
+        <!--馬路 由左至右-->
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:0.3 1;offset:0.55 0"
+          src="#drive-lane-texture"
+          vertex-a="-4.6 0 1"
+          vertex-b="-5.1 0 -38"
+          vertex-c="0 0 1"
+        ></a-triangle>
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:0.3 1;offset:0.55 0"
+          src="#drive-lane-texture"
+          vertex-a="-5.1 0 -38"
+          vertex-b="-1.5 0 -38"
+          vertex-c="0 0 1"
+        ></a-triangle>
+
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:0.3 1;offset:0.55 0"
+          src="#drive-lane-texture"
+          vertex-a="0 0 1"
+          vertex-b="-1.5 0 -38"
+          vertex-c="2.25 0 1"
+        ></a-triangle>
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:0.3 1;offset:0.55 0"
+          src="#drive-lane-texture"
+          vertex-a="-1.5 0 -38"
+          vertex-b="1.5 0 -38"
+          vertex-c="2.25 0 1"
+        ></a-triangle>
+
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:0.3 1;offset:0.55 0"
+          src="#drive-lane-texture"
+          vertex-a="2.25 0 1"
+          vertex-b="4.6 0 1"
+          vertex-c="1.5 0 -38"
+        ></a-triangle>
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:0.3 1;offset:0.55 0"
+          src="#drive-lane-texture"
+          vertex-a="1.5 0 -38"
+          vertex-b="5.1 0 -38"
+          vertex-c="4.6 0 1"
+        ></a-triangle>
+        <!--馬路結束-->
+
+        <!--人行道 由左至右-->
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:1.5 15;offset:0.55 0"
+          src="#sidewalk-texture"
+          vertex-a="-7.6 0 1"
+          vertex-b="-7.6 0 -38"
+          vertex-c="-4.6 0 1"
+        ></a-triangle>
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:1.5 15;offset:0.55 0"
+          src="#sidewalk-texture"
+          vertex-a="-7.6 0 -38"
+          vertex-b="-5.1 0 -38"
+          vertex-c="-4.6 0 1"
+        ></a-triangle>
+
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:1.5 15;offset:0.55 0"
+          src="#sidewalk-texture"
+          vertex-a="4.6 0 1"
+          vertex-b="5.1 0 -38"
+          vertex-c="7.6 0 1"
+        ></a-triangle>
+        <a-triangle
+          position="0 0 -76"
+          material="side:double;repeat:1.5 15;offset:0.55 0"
+          src="#sidewalk-texture"
+          vertex-a="5.1 0 -38"
+          vertex-b="7.6 0 -38"
+          vertex-c="7.6 0 1"
+        ></a-triangle>
+        <!--人行道結束-->
+
+        <!--雙黃線-->
+        <a-entity
+          position="-0.75 0.01 -87"
+          rotation="-90 0 3.576"
+          atlas-uvs="totalColumns: 4; column: 3"
+          scale="1 1 1"
+          material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 25;"
+          geometry="primitive: plane; buffer: false; skipCache: true; width:0.5; height:24;"
+        ></a-entity>
+        <a-entity
+          position="-1.5 0.01 -106.4"
+          rotation="-90 0 0"
+          atlas-uvs="totalColumns: 4; column: 3"
+          scale="1 0.62 1"
+          material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 25;"
+          geometry="primitive: plane; buffer: false; skipCache: true; width:0.5; height:24;"
+        ></a-entity>
+
+        <!--馬路虛線-->
+        <a-entity
+          position="2 0.01 -87"
+          rotation="-90 0 1.79"
+          atlas-uvs="totalRows: 1; totalColumns: 8; row: 1; column: 4"
+          scale="1 1 1"
+          material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 4;"
+          geometry="primitive: plane; buffer: false; skipCache: true; width:0.20; height:24;"
+        ></a-entity>
+
+        <a-entity
+        position="1.63 0.01 -106.4"
+        rotation="-90 0 0"
+        atlas-uvs="totalColumns: 8; column: 4"
+        scale="1 1 1"
+        material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 2.5;"
+        geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:14"
+      ></a-entity>
+
+        <a-entity
+          id="street-parent"
+          street='left: grass; right: grass; JSON:
+        {
+          "streetmixSegmentsFeet": [
+          {"width":10,"type":"sidewalk","variantString":"dense"},
+          {"width":15,"type":"drive-lane","variantString":"inbound|car"},
+          {"width":15,"type":"drive-lane","variantString":"outbound|car"},
+          {"width":10,"type":"sidewalk","variantString":"dense"}
+          ]
+        }'
+        ></a-entity>
+      </a-entity>
+
+      <!--不重要道路(上下)-->
+      <a-entity id="unimportant">
+        <a-entity
+          position="-82.5 0 -121.7"
+          rotation="0 90 0"
+          id="street-parent"
+          street='showGround: false; left: grass; right: grass; JSON:
+        {
+          "streetmixSegmentsFeet": [
+          {"width":10,"type":"sidewalk","variantString":"dense"},
+          {"width":15,"type":"drive-lane","variantString":"inbound|car"},
+          {"width":15,"type":"drive-lane","variantString":"outbound|car"},
+          {"width":10,"type":"sidewalk","variantString":"dense"}
+          ]
+        }'
+        ></a-entity>
+
+        <a-entity
+          position="82.5 0 -121.7"
+          rotation="0 90 0"
+          id="street-parent"
+          street='showGround: false; left: grass; right: grass; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -348,45 +405,13 @@
         ></a-entity>
 
         <a-image
-          id="intersection1"
-          position="0 0 -106.5"
-          rotation="-90 90 0"
+          position="0 0 -121.5"
+          rotation="90 0 0"
           scale="15 15.2 0"
-          src="assets/images/15m.png"
-        ></a-image>
+          id="texture-intersection"
+          src="assets/images/127_road-texture-seamless.jpg"
+        />
       </a-entity>
-
-      <a-entity
-        position="-82.5 0 -121.7"
-        rotation="0 90 0"
-        id="street-parent"
-        street='showGround: false; left: grass; right: grass; JSON:
-        {
-          "streetmixSegmentsFeet": [
-          {"width":10,"type":"sidewalk","variantString":"dense"},
-          {"width":15,"type":"drive-lane","variantString":"inbound|car"},
-          {"width":15,"type":"drive-lane","variantString":"outbound|car"},
-          {"width":10,"type":"sidewalk","variantString":"dense"}
-          ]
-        }'
-      ></a-entity>
-
-      <a-entity
-        position="82.5 0 -121.7"
-        rotation="0 90 0"
-        id="street-parent"
-        street='showGround: false; left: grass; right: grass; JSON:
-        {
-          "streetmixSegmentsFeet": [
-          {"width":10,"type":"sidewalk","variantString":"dense"},
-          {"width":15,"type":"drive-lane","variantString":"inbound|car"},
-          {"width":15,"type":"drive-lane","variantString":"outbound|car"},
-          {"width":10,"type":"sidewalk","variantString":"dense"}
-          ]
-        }'
-      ></a-entity>
-
-      <a-image position="0 0 -121.5" rotation="90 0 0" scale="15 15.2 0" id="texture-intersection" src="assets/images/127_road-texture-seamless.jpg" />
     </a-scene>
   </body>
 </html>
