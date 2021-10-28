@@ -3,7 +3,9 @@
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="./dist/aframe-street-component.js"></script>
-
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+  
     <!-- ocean, ground, sky -->
     <script src="src/components/ocean-plane.js"></script>
     <script src="src/lib/aframe-cubemap-component.js"></script>
@@ -14,6 +16,7 @@
       renderer="colorManagement: true; highRefreshRate: true; foveationLevel: 3; physicallyCorrectLights: true; logarithmicDepthBuffer: false;"
       fogoff="type: linear; color: #D5C69B; far: 200"
       gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;"
+      cursor="rayOrigin: mouse"
     >
       <a-assets>
         <streetmix-assets url="./"></streetmix-assets>
@@ -48,24 +51,7 @@
         />
       </a-assets>
 
-      <a-entity id="cameraRig" position="0 20 -60">
-        <a-entity
-          id="camera"
-          camera="far: 1000"
-          wasd-controls
-          look-controls="reverseMouseDrag:false"
-        ></a-entity>
-        <a-entity
-          id="leftHand"
-          hand-controls="hand: left; handModelStyle: lowPoly; color: #ccffcc"
-          teleport-controls="cameraRig: #cameraRig; button: trigger"
-        ></a-entity>
-        <a-entity
-          id="rightHand"
-          hand-controls="hand: right; handModelStyle: lowPoly; color: #ccffcc"
-          teleport-controls="cameraRig: #cameraRig; button: trigger"
-        ></a-entity>
-      </a-entity>
+      <a-entity position="0 20 -60" camera look-controls mouse-cursor wasd-controls></a-entity>
 
       <a-entity light="type: ambient; color: #FFF; intensity: 2"></a-entity>
       <a-entity
@@ -404,7 +390,9 @@
         }'
         ></a-entity>
 
-        <a-plane position="0 0 0" rotation="-90 0 0" width="15.1" height="9.2" color="#545f59"></a-plane>
+        <a-plane rotation="-90 0 0" width="15.1" height="9.2" color="#545f59" 
+        event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 1 1 1"
+        event-set__leave="_event: mouseleave; material.color: #545f59; scale: 1 1 1"></a-plane>
 
       </a-entity>
     </a-scene>

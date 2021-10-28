@@ -61,6 +61,8 @@
   },
   "dependencies": {
     "aframe-atlas-uvs-component": "^3.0.0",
-    "aframe-gltf-helpers": "0.0.3"
+    "aframe-event-set-component": "^5.0.0",
+    "aframe-gltf-helpers": "0.0.3",
+    "aframe-mouse-cursor-component": "^0.5.3"
   }
 }
