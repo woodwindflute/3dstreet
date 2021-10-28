@@ -231,7 +231,7 @@
         ></a-entity>
       </a-entity>
 
-      <a-entity position="0 0 -243" rotation="0 180 0">
+      <a-entity position="0 0 -237.2" rotation="0 180 0">
         <!--馬路 由左至右-->
         <a-triangle
           position="0 0 -76"
@@ -373,9 +373,9 @@
       </a-entity>
 
       <!--不重要道路(上下)-->
-      <a-entity id="unimportant">
+      <a-entity id="unimportant" position="0 -0.1 -118.6">
         <a-entity
-          position="-82.5 0 -121.7"
+          position="-80 0 0"
           rotation="0 90 0"
           id="street-parent"
           street='showGround: false; left: grass; right: grass; JSON:
@@ -390,7 +390,7 @@
         ></a-entity>
 
         <a-entity
-          position="82.5 0 -121.7"
+          position="80 0 0"
           rotation="0 90 0"
           id="street-parent"
           street='showGround: false; left: grass; right: grass; JSON:
@@ -404,13 +404,8 @@
         }'
         ></a-entity>
 
-        <a-image
-          position="0 0 -121.5"
-          rotation="90 0 0"
-          scale="15 15.2 0"
-          id="texture-intersection"
-          src="assets/images/127_road-texture-seamless.jpg"
-        />
+        <a-plane position="0 0 0" rotation="-90 0 0" width="10.1" height="9.2" color="#545f59"></a-plane>
+
       </a-entity>
     </a-scene>
   </body>
