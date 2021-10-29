@@ -6,7 +6,7 @@ require("./components/create-from-json");
 require("aframe-atlas-uvs-component");
 require("aframe-gltf-helpers");
 
-window.AFRAME.registerComponent('change-color-on-hover', {
+window.AFRAME.registerComponent('display-meter', {
   init: function () {
     var el = this.el;
     var text = document.getElementById('text')

@@ -336,7 +336,7 @@ function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId,
   segmentEl.setAttribute('rotation', '270 ' + rotationY + ' 0');
   segmentEl.setAttribute('mixin', mixinId + state.textures.suffix); // append suffix to mixin id to specify texture index
   segmentEl.setAttribute('text-value', meter); // append suffix to mixin id to specify texture index
-  segmentEl.setAttribute('change-color-on-hover','red');
+  segmentEl.setAttribute('display-meter','red');
   console.log(segmentEl)
   return segmentEl;
 }

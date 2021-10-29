@@ -3,40 +3,19 @@
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="./dist/aframe-street-component.js"></script>
-
-    <!-- user controls -->
-    <script src="https://raw.githack.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-    <script src="src/lib/aframe-orbit-controls.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
 
     <!-- ocean, ground, sky -->
     <script src="src/components/ocean-plane.js"></script>
     <script src="src/lib/aframe-cubemap-component.js"></script>
-
-    <!-- 2d ui toolbar -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    />
-
-    <!-- move a-frame performance `stats` below toolbar -->
-    <style>
-      .rs-base {
-        left: 20px;
-        top: 80px;
-      }
-    </style>
   </head>
   <body>
     <a-scene
       renderer="colorManagement: true; highRefreshRate: true; foveationLevel: 3; physicallyCorrectLights: true; logarithmicDepthBuffer: false;"
       fogoff="type: linear; color: #D5C69B; far: 200"
       gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;"
+      cursor="rayOrigin: mouse"
     >
       <a-assets>
         <streetmix-assets url="./"></streetmix-assets>
@@ -51,55 +30,23 @@
         </a-cubemap>
       </a-assets>
 
-      <a-entity id="cameraRig" position="0 20 -50">
-        <a-entity
-          id="camera"
-          camera="far: 1000"
-          wasd-controls
-          look-controls="reverseMouseDrag:true"
-        ></a-entity>
-        <a-entity
-          id="leftHand"
-          hand-controls="hand: left; handModelStyle: lowPoly; color: #ccffcc"
-          teleport-controls="cameraRig: #cameraRig; button: trigger"
-        ></a-entity>
-        <a-entity
-          id="rightHand"
-          hand-controls="hand: right; handModelStyle: lowPoly; color: #ccffcc"
-          teleport-controls="cameraRig: #cameraRig; button: trigger"
-        ></a-entity>
+      <a-entity id="cameraRig" position="0 20 50">
+        <a-entity id="camera" camera wasd-controls look-controls></a-entity>
       </a-entity>
 
       <a-entity light="type: ambient; color: #FFF; intensity: 2"></a-entity>
-      <a-entity
-        light="type: directional; color: #FFF; intensity: 0.6"
-        position="0.5 1 -1"
-      ></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="0.5 1 -1"></a-entity>
 
-      <a-ocean-plane
-        height="100"
-        width="100"
-        position="0 -1 0"
-        material="envMap: #skycube;"
-      ></a-ocean-plane>
+      <a-ocean-plane height="100" width="100" position="0 -1 0" material="envMap: #skycube;"></a-ocean-plane>
 
       <a-entity id="skybox" cubemap="folder: assets/images/skybox/"></a-entity>
 
-      <a-entity
-        id="main"
-        street
-        streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"
-      ></a-entity>
+      <a-entity id="main" position="0 0 82.5" street streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"></a-entity>
 
-      <a-entity
-        position="0 0 -165"
-        rotation="0 180 0"
-        street
-        streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"
-      ></a-entity>
+      <a-entity position="0 0 -82.5" rotation="0 180 0" street streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"></a-entity>
 
       <!--不重要道路(上下)-->
-      <a-entity id="unimportant" position="0 -0.1 -82.5">
+      <a-entity id="unimportant" position="0 -0.1 0">
         <a-entity
           position="-75 0 0"
           rotation="0 90 0"
@@ -130,16 +77,9 @@
         }'
         ></a-entity>
 
-        <a-plane
-          id="panel"
-          position="0 0.1 0"
-          rotation="-90 0 0"
-          width="15"
-          height="15"
-          color="#545f59"
-          event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 1 1 1"
-          event-set__leave="_event: mouseleave; material.color: #545f59; scale: 1 1 1"
-        ></a-plane>
+        <a-plane id="panel" position="0 0.1 0" rotation="-90 0 0" width="15" height="15" color="#545f59"></a-plane>
+        <a-text id='text' align="center" position="0 5 0" side="double" value="3m" color="white" scale="15 15 15"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 5000 fill: forwards;" ></a-text>
       </a-entity>
     </a-scene>
   </body>
@@ -156,6 +96,6 @@
       document
         .getElementById("down")
         .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
-    }, 3000);
+    }, 4000);
   </script>
 </html>
