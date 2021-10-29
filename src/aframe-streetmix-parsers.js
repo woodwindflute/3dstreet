@@ -18,6 +18,7 @@ const defaultModelWidthsInMeters = {
   'bike-lane': 1.8,
   'drive-lane': 3,
   'divider': 0.3,
+  'public-zone':0.3,
   'parking-lane': 3,
   'sidewalk': 3,
   'sidewalk-tree': 3,
@@ -116,6 +117,11 @@ function insertSeparatorSegments (segments) {
 
     // if a *lane segment and divider are adjacent, use a solid separator
     if ((isLaneIsh(currentValue.type) && previousValue.type === 'divider') || (isLaneIsh(previousValue.type) && currentValue.type === 'divider')) {
+      newArray.push({ type: 'separator', variantString: 'solid', width: 0 });
+    }
+
+    // if a *lane segment and public-zone are adjacent, use a solid separator
+    if ((isLaneIsh(currentValue.type) && previousValue.type === 'public-zone') || (isLaneIsh(previousValue.type) && currentValue.type === 'public-zone')) {
       newArray.push({ type: 'separator', variantString: 'solid', width: 0 });
     }
 
@@ -382,6 +388,9 @@ function processSegments (segments, showStriping, length) {
     // the A-Frame mixin ID is often identical to the corresponding streetmix segment "type" by design, let's start with that
     var mixinId = segments[i].type;
 
+    // planting-strip divider view as public-zone [HY]
+    if(segments[i].variantString === 'planting-strip') mixinId = 'public-zone';
+
     // look at segment type and variant(s) to determine specific cases
     if (segments[i].type === 'drive-lane' && variantList[1] === 'sharrow') {
       // make a parent entity for the stencils
@@ -442,7 +451,16 @@ function processSegments (segments, showStriping, length) {
         segmentParentEl.append(stencilsParentEl);
       }
     } else if (segments[i].type === 'divider' && variantList[0] === 'bollard') {
-      mixinId = 'divider';
+      if(segments[i].variantString==="planting-strip") mixinId = 'public-zone';
+      else mixinId = 'divider';
+      
+      // make some safehits
+      const safehitsParentEl = createSafehitsParentElement(positionX);
+      cloneMixinAsChildren({ objectMixinId: 'safehit', parentEl: safehitsParentEl, step: 4, radius: clonedObjectRadius });
+      // add the safehits to the segment parent
+      segmentParentEl.append(safehitsParentEl);
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'bollard') {
+      mixinId = 'public-zone';
       
       // make some safehits
       const safehitsParentEl = createSafehitsParentElement(positionX);
