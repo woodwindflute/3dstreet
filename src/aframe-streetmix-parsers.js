@@ -1,3 +1,26 @@
+window.AFRAME.registerComponent('change-color-on-hover', {
+  init: function () {
+    var el = this.el;
+    var text = document.getElementById('text')
+    var data = this.data;
+    var defaultColor = el.getAttribute('material').color;
+
+    el.addEventListener('mouseenter', function () {
+      meter = Math.floor(el.getAttribute('text-value') * 10) / 10
+      text.setAttribute('value', meter + 'm')
+      if(meter !== 0) {
+        text.setAttribute('visible','true');    
+        el.setAttribute('material', 'color: black');
+      }
+    });
+
+    el.addEventListener('mouseleave', function () {
+      el.setAttribute('material', 'color: white');
+      text.setAttribute('visible','false');
+    });
+  }
+});
+
 // Orientation - default model orientation is "outbound" (away from camera)
 var streetmixParsersTested = require('./tested/aframe-streetmix-parsers-tested');
 var streetmixUtils = require('./tested/streetmix-utils');
@@ -324,18 +347,20 @@ function createCenteredStreetElement (segments) {
   return streetEl;
 }
 
-function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId, length) {
+function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId, length, meter) {
   var segmentEl = document.createElement('a-entity');
   const scaleY = length / 150;
   const scaleNew = scaleX + ' ' + scaleY + ' 1';
   segmentEl.setAttribute('scale', scaleNew);
   console.log(scaleNew);
-
   // segmentEl.setAttribute('geometry', 'height', length);
   segmentEl.setAttribute('position', positionX + ' ' + positionY + ' 0');
   // USE THESE 2 LINES FOR TEXTURE MODE:
   segmentEl.setAttribute('rotation', '270 ' + rotationY + ' 0');
   segmentEl.setAttribute('mixin', mixinId + state.textures.suffix); // append suffix to mixin id to specify texture index
+  segmentEl.setAttribute('text-value', meter); // append suffix to mixin id to specify texture index
+  segmentEl.setAttribute('change-color-on-hover','red');
+  console.log(segmentEl)
   return segmentEl;
 }
 
@@ -595,7 +620,7 @@ function processSegments (segments, showStriping, length) {
 
     // add new object
     console.log('length', length);
-    segmentParentEl.append(createSegmentElement(scaleX, positionX, positionY, rotationY, mixinId, length));
+    segmentParentEl.append(createSegmentElement(scaleX, positionX, positionY, rotationY, mixinId, length, segmentWidthInMeters));
     // returns JSON output instead
     // append the new surfaceElement to the segmentParentEl
     streetParentEl.append(segmentParentEl);

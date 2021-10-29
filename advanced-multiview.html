@@ -99,13 +99,13 @@
             color="#545f59"
           ></a-plane>
           <a-text
-            position="0 0 -1.6"
+            id='text'
+            position="0 0.1 -1.5"
             rotation="-90 -90 0"
             id="meter3"
             value="3m"
             color="white"
             scale="10 10 10"
-            visible="false"
           ></a-text>
         </a-entity>
       </a-entity>
@@ -124,6 +124,6 @@
       document
         .getElementById("down")
         .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
-    }, 3000);
+    }, 5000);
   </script>
 </html>
