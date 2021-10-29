@@ -6,6 +6,29 @@ require("./components/create-from-json");
 require("aframe-atlas-uvs-component");
 require("aframe-gltf-helpers");
 
+window.AFRAME.registerComponent('change-color-on-hover', {
+  init: function () {
+    var el = this.el;
+    var text = document.getElementById('text')
+    var data = this.data;
+    var defaultColor = el.getAttribute('material').color;
+
+    el.addEventListener('mouseenter', function () {
+      meter = Math.floor(el.getAttribute('text-value') * 10) / 10
+      text.setAttribute('value', meter + 'm')
+      if(meter !== 0) {
+        text.setAttribute('visible','true');    
+        el.setAttribute('material', 'color: black');
+      }
+    });
+
+    el.addEventListener('mouseleave', function () {
+      el.setAttribute('material', 'color: white');
+      text.setAttribute('visible','false');
+    });
+  }
+});
+
 AFRAME.registerComponent("street", {
   schema: {
     JSON: { type: "string" },

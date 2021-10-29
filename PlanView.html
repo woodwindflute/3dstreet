@@ -42,24 +42,25 @@
         position="0.5 1 -1"
       ></a-entity>
 
-      <a-entity position="-82.5 0 30" camera mouse-cursor></a-entity>
+      <a-entity position="0 0 30" camera mouse-cursor></a-entity>
 
       <a-entity rotation="0 90 90">
         <a-entity
           id="main"
+          position="0 0 -82.5"
           street
           streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"
         ></a-entity>
 
         <a-entity
-          position="0 0 -165"
+          position="0 0 82.5"
           rotation="0 180 0"
           street
           streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"
         ></a-entity>
 
         <!--不重要道路(上下)-->
-        <a-entity id="unimportant" position="0 -0.1 -82.5">
+        <a-entity id="unimportant" position="0 -0.1 0">
           <a-entity
             position="-75 0 0"
             rotation="0 90 0"
@@ -106,6 +107,7 @@
             value="3m"
             color="white"
             scale="10 10 10"
+            visible='false'
           ></a-text>
         </a-entity>
       </a-entity>
