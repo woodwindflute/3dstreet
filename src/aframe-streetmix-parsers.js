@@ -18,6 +18,7 @@ const defaultModelWidthsInMeters = {
   'bike-lane': 1.8,
   'drive-lane': 3,
   'divider': 0.3,
+  'public-zone':0.3,
   'parking-lane': 3,
   'sidewalk': 3,
   'sidewalk-tree': 3,
@@ -116,6 +117,11 @@ function insertSeparatorSegments (segments) {
 
     // if a *lane segment and divider are adjacent, use a solid separator
     if ((isLaneIsh(currentValue.type) && previousValue.type === 'divider') || (isLaneIsh(previousValue.type) && currentValue.type === 'divider')) {
+      newArray.push({ type: 'separator', variantString: 'solid', width: 0 });
+    }
+
+    // if a *lane segment and public-zone are adjacent, use a solid separator
+    if ((isLaneIsh(currentValue.type) && previousValue.type === 'public-zone') || (isLaneIsh(previousValue.type) && currentValue.type === 'public-zone')) {
       newArray.push({ type: 'separator', variantString: 'solid', width: 0 });
     }
 
@@ -318,18 +324,20 @@ function createCenteredStreetElement (segments) {
   return streetEl;
 }
 
-function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId, length) {
+function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId, length, meter) {
   var segmentEl = document.createElement('a-entity');
   const scaleY = length / 150;
   const scaleNew = scaleX + ' ' + scaleY + ' 1';
   segmentEl.setAttribute('scale', scaleNew);
   console.log(scaleNew);
-
   // segmentEl.setAttribute('geometry', 'height', length);
   segmentEl.setAttribute('position', positionX + ' ' + positionY + ' 0');
   // USE THESE 2 LINES FOR TEXTURE MODE:
   segmentEl.setAttribute('rotation', '270 ' + rotationY + ' 0');
   segmentEl.setAttribute('mixin', mixinId + state.textures.suffix); // append suffix to mixin id to specify texture index
+  segmentEl.setAttribute('text-value', meter); // append suffix to mixin id to specify texture index
+  segmentEl.setAttribute('display-meter','red');
+  console.log(segmentEl)
   return segmentEl;
 }
 
@@ -381,6 +389,9 @@ function processSegments (segments, showStriping, length) {
 
     // the A-Frame mixin ID is often identical to the corresponding streetmix segment "type" by design, let's start with that
     var mixinId = segments[i].type;
+
+    // planting-strip divider view as public-zone [HY]
+    if(segments[i].variantString === 'planting-strip') mixinId = 'public-zone';
 
     // look at segment type and variant(s) to determine specific cases
     if (segments[i].type === 'drive-lane' && variantList[1] === 'sharrow') {
@@ -442,7 +453,16 @@ function processSegments (segments, showStriping, length) {
         segmentParentEl.append(stencilsParentEl);
       }
     } else if (segments[i].type === 'divider' && variantList[0] === 'bollard') {
-      mixinId = 'divider';
+      if(segments[i].variantString==="planting-strip") mixinId = 'public-zone';
+      else mixinId = 'divider';
+      
+      // make some safehits
+      const safehitsParentEl = createSafehitsParentElement(positionX);
+      cloneMixinAsChildren({ objectMixinId: 'safehit', parentEl: safehitsParentEl, step: 4, radius: clonedObjectRadius });
+      // add the safehits to the segment parent
+      segmentParentEl.append(safehitsParentEl);
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'bollard') {
+      mixinId = 'public-zone';
       
       // make some safehits
       const safehitsParentEl = createSafehitsParentElement(positionX);
@@ -577,7 +597,7 @@ function processSegments (segments, showStriping, length) {
 
     // add new object
     console.log('length', length);
-    segmentParentEl.append(createSegmentElement(scaleX, positionX, positionY, rotationY, mixinId, length));
+    segmentParentEl.append(createSegmentElement(scaleX, positionX, positionY, rotationY, mixinId, length, segmentWidthInMeters));
     // returns JSON output instead
     // append the new surfaceElement to the segmentParentEl
     streetParentEl.append(segmentParentEl);
@@ -628,7 +648,7 @@ function processBuildings (left, right, streetWidth, showGround, length) {
       const buildingJSONString = JSON.stringify(buildingsArray);
       const placedObjectEl = document.createElement('a-entity');
       // to center what is created by createBuildingsArray
-      placedObjectEl.setAttribute('position', (positionX + (sideMultiplier * -72)) + ' 0 ' + (sideMultiplier * 75));
+      placedObjectEl.setAttribute('position', (positionX + (sideMultiplier * -72)) + ' 0 ' + (sideMultiplier * 77));
       placedObjectEl.setAttribute('rotation', '0 ' + (90 * sideMultiplier) + ' 0');
       placedObjectEl.setAttribute('create-from-json', 'jsonString', buildingJSONString);
       placedObjectEl.classList.add('block-' + side);

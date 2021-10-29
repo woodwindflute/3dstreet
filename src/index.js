@@ -6,6 +6,29 @@ require("./components/create-from-json");
 require("aframe-atlas-uvs-component");
 require("aframe-gltf-helpers");
 
+window.AFRAME.registerComponent('display-meter', {
+  init: function () {
+    var el = this.el;
+    var text = document.getElementById('text')
+    var data = this.data;
+    var defaultColor = el.getAttribute('material').color;
+
+    el.addEventListener('mouseenter', function () {
+      meter = Math.floor(el.getAttribute('text-value') * 10) / 10
+      text.setAttribute('value', meter + 'm')
+      if(meter !== 0) {
+        text.setAttribute('visible','true');    
+        el.setAttribute('material', 'color: black');
+      }
+    });
+
+    el.addEventListener('mouseleave', function () {
+      el.setAttribute('material', 'color: white');
+      text.setAttribute('visible','false');
+    });
+  }
+});
+
 AFRAME.registerComponent("street", {
   schema: {
     JSON: { type: "string" },
@@ -53,6 +76,7 @@ AFRAME.registerComponent("street", {
         data.showGround,
         data.length
       );
+      // buildingsEl.setAttribute("position","0 0 -30")
       this.el.append(buildingsEl);
     }
   },
@@ -289,6 +313,12 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[18].width == 8.33333
         )
           window.location.replace("40m.html");
+
+        let totalWidth = 0;
+        for (let i = 0; i < streetmixSegments.length; i++) {
+          totalWidth += parseFloat(streetmixSegments[i].width);
+        }
+        el.setAttribute("totalWidth", totalWidth * 0.3048);
 
         if (data.showBuildings) {
           el.setAttribute(
