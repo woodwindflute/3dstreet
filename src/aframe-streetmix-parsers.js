@@ -639,14 +639,14 @@ function processBuildings (left, right, streetWidth, showGround, length) {
       buildingElement.appendChild(groundParentEl);
     }
 
-    if (currentValue === 'narrow' || currentValue === 'wide') {
+    if (currentValue === 'narrow' || currentValue === 'wide' || currentValue === 'grass') {
       // make buildings
       const buildingsArray = streetmixParsersTested.createBuildingsArray(buildingLotWidth);
 
       const buildingJSONString = JSON.stringify(buildingsArray);
       const placedObjectEl = document.createElement('a-entity');
       // to center what is created by createBuildingsArray
-      placedObjectEl.setAttribute('position', (positionX + (sideMultiplier * -72)) + ' 0 ' + (sideMultiplier * 75));
+      placedObjectEl.setAttribute('position', (positionX + (sideMultiplier * -72)) + ' 0 ' + (sideMultiplier * 77));
       placedObjectEl.setAttribute('rotation', '0 ' + (90 * sideMultiplier) + ' 0');
       placedObjectEl.setAttribute('create-from-json', 'jsonString', buildingJSONString);
       placedObjectEl.classList.add('block-' + side);
