@@ -13,8 +13,16 @@
     <script src="src/lib/aframe-cubemap-component.js"></script>
 
     <!-- 2d ui toolbar -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
 
     <!-- move a-frame performance `stats` below toolbar -->
     <style>
@@ -23,49 +31,80 @@
         top: 80px;
       }
     </style>
-
   </head>
   <body>
-    <a-scene renderer="colorManagement: true; highRefreshRate: true; foveationLevel: 3; physicallyCorrectLights: true; logarithmicDepthBuffer: false;" fogoff="type: linear; color: #D5C69B; far: 200" gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;">
+    <a-scene
+      renderer="colorManagement: true; highRefreshRate: true; foveationLevel: 3; physicallyCorrectLights: true; logarithmicDepthBuffer: false;"
+      fogoff="type: linear; color: #D5C69B; far: 200"
+      gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/;"
+    >
       <a-assets>
         <streetmix-assets url="./"></streetmix-assets>
 
         <a-cubemap id="skycube">
-          <img src="assets/images/skybox/posx.jpg">
-          <img src="assets/images/skybox/negx.jpg">
-          <img src="assets/images/skybox/posy.jpg">
-          <img src="assets/images/skybox/negy.jpg">
-          <img src="assets/images/skybox/posz.jpg">
-          <img src="assets/images/skybox/negz.jpg">
+          <img src="assets/images/skybox/posx.jpg" />
+          <img src="assets/images/skybox/negx.jpg" />
+          <img src="assets/images/skybox/posy.jpg" />
+          <img src="assets/images/skybox/negy.jpg" />
+          <img src="assets/images/skybox/posz.jpg" />
+          <img src="assets/images/skybox/negz.jpg" />
         </a-cubemap>
-
       </a-assets>
 
-      <a-entity id="cameraRig">
-        <a-entity id="camera" camera="far: 1000" wasd-controls="enabled: false" orbit-controls="autoRotate: true;autoRotateSpeed:0.01;target: 0 0 0;initialPosition:0 4 15;minDistance:3;maxDistance:100;enableKeys:false"></a-entity>
-        <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ccffcc" teleport-controls="cameraRig: #cameraRig; button: trigger"></a-entity>
-        <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ccffcc" teleport-controls="cameraRig: #cameraRig; button: trigger"></a-entity>
+      <a-entity id="cameraRig" position="0 20 -50">
+        <a-entity
+          id="camera"
+          camera="far: 1000"
+          wasd-controls
+          look-controls="reverseMouseDrag:true"
+        ></a-entity>
+        <a-entity
+          id="leftHand"
+          hand-controls="hand: left; handModelStyle: lowPoly; color: #ccffcc"
+          teleport-controls="cameraRig: #cameraRig; button: trigger"
+        ></a-entity>
+        <a-entity
+          id="rightHand"
+          hand-controls="hand: right; handModelStyle: lowPoly; color: #ccffcc"
+          teleport-controls="cameraRig: #cameraRig; button: trigger"
+        ></a-entity>
       </a-entity>
-      <!--<a-triangle position="-1.4 0.03 -67.5" material="repeat:0.3 1;offset:0.55 0" src="assets/materials/TexturesCom_Roads0086_1_seamless_S_rotate - copy.jpg" color="#CCC" rotation="-90 0 0" scale="6 15 1" vertex-a="0 0.5 0" vertex-b="0.5 -0.5 0" vertex-c="0.5 0.5 0"></a-triangle>-->
 
       <a-entity light="type: ambient; color: #FFF; intensity: 2"></a-entity>
-      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="0.5 1 -1"></a-entity>
+      <a-entity
+        light="type: directional; color: #FFF; intensity: 0.6"
+        position="0.5 1 -1"
+      ></a-entity>
 
-      <a-ocean-plane height="100" width="100" position="0 -1 0" material="envMap: #skycube;"></a-ocean-plane>
+      <a-ocean-plane
+        height="100"
+        width="100"
+        position="0 -1 0"
+        material="envMap: #skycube;"
+      ></a-ocean-plane>
 
       <a-entity id="skybox" cubemap="folder: assets/images/skybox/"></a-entity>
 
-      <a-entity id="main" street streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"></a-entity>
+      <a-entity
+        id="main"
+        street
+        streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"
+      ></a-entity>
 
-      <a-entity position="0 0 -167" rotation="0 180 0" street streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"></a-entity>
-    
+      <a-entity
+        position="0 0 -165"
+        rotation="0 180 0"
+        street
+        streetmix-loader="streetmixStreetURL: http://localhost:8000/kelly890925/75"
+      ></a-entity>
+
       <!--不重要道路(上下)-->
-      <a-entity id="unimportant" position="0 0 38">
+      <a-entity id="unimportant" position="0 -0.1 -82.5">
         <a-entity
-          position="-82.5 0 -121.7"
+          position="-75 0 0"
           rotation="0 90 0"
-          id="street-parent"
-          street='showGround: false; left: grass; right: grass; JSON:
+          id="up"
+          street='showGround: false; left: none; right: none; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -77,10 +116,10 @@
         ></a-entity>
 
         <a-entity
-          position="82.5 0 -121.7"
+          position="75 0 0"
           rotation="0 90 0"
-          id="street-parent"
-          street='showGround: false; left: grass; right: grass; JSON:
+          id="down"
+          street='showGround: false; left: none; right: none; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -91,14 +130,32 @@
         }'
         ></a-entity>
 
-        <a-image
-          position="0 0 -121.5"
-          rotation="90 0 0"
-          scale="15 15.2 0"
-          id="texture-intersection"
-          src="assets/images/127_road-texture-seamless.jpg"
-        />
+        <a-plane
+          id="panel"
+          position="0 0.1 0"
+          rotation="-90 0 0"
+          width="15"
+          height="15"
+          color="#545f59"
+          event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 1 1 1"
+          event-set__leave="_event: mouseleave; material.color: #545f59; scale: 1 1 1"
+        ></a-plane>
       </a-entity>
     </a-scene>
   </body>
+  <script>
+    setTimeout(() => {
+      let totalWidth = document
+        .getElementById("main")
+        .getAttribute("totalWidth");
+      console.log(totalWidth);
+      document.getElementById("panel").setAttribute("width", totalWidth);
+      document
+        .getElementById("up")
+        .setAttribute("position", -75 - totalWidth / 2 + " 0 0");
+      document
+        .getElementById("down")
+        .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
+    }, 3000);
+  </script>
 </html>

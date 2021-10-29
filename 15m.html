@@ -5,7 +5,7 @@
     <script src="./dist/aframe-street-component.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
-  
+
     <!-- ocean, ground, sky -->
     <script src="src/components/ocean-plane.js"></script>
     <script src="src/lib/aframe-cubemap-component.js"></script>
@@ -51,7 +51,13 @@
         />
       </a-assets>
 
-      <a-entity position="0 20 -60" camera look-controls mouse-cursor wasd-controls></a-entity>
+      <a-entity
+        position="0 20 -60"
+        camera
+        look-controls
+        mouse-cursor
+        wasd-controls
+      ></a-entity>
 
       <a-entity light="type: ambient; color: #FFF; intensity: 2"></a-entity>
       <a-entity
@@ -195,13 +201,13 @@
         ></a-entity>
 
         <a-entity
-        position="1.63 0.01 -106.4"
-        rotation="-90 0 0"
-        atlas-uvs="totalColumns: 8; column: 4"
-        scale="1 1 1"
-        material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 2.5;"
-        geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:14"
-      ></a-entity>
+          position="1.63 0.01 -106.4"
+          rotation="-90 0 0"
+          atlas-uvs="totalColumns: 8; column: 4"
+          scale="1 1 1"
+          material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 2.5;"
+          geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:14"
+        ></a-entity>
 
         <a-entity
           id="street-parent"
@@ -336,13 +342,13 @@
         ></a-entity>
 
         <a-entity
-        position="1.63 0.01 -106.4"
-        rotation="-90 0 0"
-        atlas-uvs="totalColumns: 8; column: 4"
-        scale="1 1 1"
-        material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 2.5;"
-        geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:14"
-      ></a-entity>
+          position="1.63 0.01 -106.4"
+          rotation="-90 0 0"
+          atlas-uvs="totalColumns: 8; column: 4"
+          scale="1 1 1"
+          material="src: #markings-atlas;alphaTest: 0;transparent:true;repeat:1 2.5;"
+          geometry="primitive: plane; buffer: false; skipCache: true; width:0.2; height:14"
+        ></a-entity>
 
         <a-entity
           id="street-parent"
@@ -361,10 +367,10 @@
       <!--不重要道路(上下)-->
       <a-entity id="unimportant" position="0 -0.1 -118.6">
         <a-entity
-          position="-82.5 0 0"
+          position="-75 0 0"
           rotation="0 90 0"
-          id="street-parent"
-          street='showGround: false; left: grass; right: grass; JSON:
+          id="up"
+          street='showGround: false; left: none; right: none; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -376,10 +382,10 @@
         ></a-entity>
 
         <a-entity
-          position="82.5 0 0"
+          position="75 0 0"
           rotation="0 90 0"
-          id="street-parent"
-          street='showGround: false; left: grass; right: grass; JSON:
+          id="down"
+          street='showGround: false; left: none; right: none; JSON:
         {
           "streetmixSegmentsFeet": [
           {"width":10,"type":"sidewalk","variantString":"dense"},
@@ -390,11 +396,28 @@
         }'
         ></a-entity>
 
-        <a-plane rotation="-90 0 0" width="15.1" height="9.2" color="#545f59" 
-        event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 1 1 1"
-        event-set__leave="_event: mouseleave; material.color: #545f59; scale: 1 1 1"></a-plane>
-
+        <a-plane
+          id="panel"
+          rotation="-90 0.1 0"
+          width="15"
+          height="9.2"
+          color="#545f59"
+          event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 1 1 1"
+          event-set__leave="_event: mouseleave; material.color: #545f59; scale: 1 1 1"
+        ></a-plane>
       </a-entity>
     </a-scene>
   </body>
+  <script>
+    setTimeout(() => {
+      let totalWidth = 50 * 0.3048;
+      document.getElementById("panel").setAttribute("width", totalWidth);
+      document
+        .getElementById("up")
+        .setAttribute("position", -75 - totalWidth / 2 + " 0 0");
+      document
+        .getElementById("down")
+        .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
+    }, 3000);
+  </script>
 </html>

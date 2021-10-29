@@ -53,6 +53,7 @@ AFRAME.registerComponent("street", {
         data.showGround,
         data.length
       );
+      // buildingsEl.setAttribute("position","0 0 -30")
       this.el.append(buildingsEl);
     }
   },
@@ -289,6 +290,12 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[18].width == 8.33333
         )
           window.location.replace("40m.html");
+
+        let totalWidth = 0;
+        for (let i = 0; i < streetmixSegments.length; i++) {
+          totalWidth += parseFloat(streetmixSegments[i].width);
+        }
+        el.setAttribute("totalWidth", totalWidth * 0.3048);
 
         if (data.showBuildings) {
           el.setAttribute(
