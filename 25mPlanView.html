@@ -42,15 +42,15 @@
         position="0.5 1 -1"
       ></a-entity>
 
-      <a-entity position="-115 0 30" camera mouse-cursor></a-entity>
+      <a-entity position="0 0 30" camera mouse-cursor></a-entity>
 
       <a-entity rotation="0 90 90">
-        <a-entity id="main">
+        <a-entity id="main" position="0 0 114.5">
           <!--馬路 由左至右-->
           <a-entity position="0 0 -76">
             <a-triangle
               vertex-a="-9.15 0 1"
-              vertex-b="-9.15 0 -31"
+              vertex-b="-9.15 0 -32"
               vertex-c="-8.2 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
@@ -63,55 +63,47 @@
               src="#drive-lane-texture"
             ></a-triangle>
   
-            <a-entity id="road1"
-            event-set__enter="_event: mouseenter; _target: #meter3d5; visible: true"
-            event-set__leave="_event: mouseleave; _target: #meter3d5; visible: false">
-              <a-triangle
+            <a-triangle
               vertex-a="-8.2 0 1"
-              vertex-b="-8.2 0 -31"
+              vertex-b="-8.2 0 -15"
               vertex-c="-4.7 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
             <a-triangle
               vertex-a="-4.7 0 1"
-              vertex-b="-8.2 0 -31"
-              vertex-c="-4.7 0 -31"
+              vertex-b="-8.2 0 -15"
+              vertex-c="-4.7 0 -15"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
-            </a-entity>
-            
-            <a-entity id="road2"
-            event-set__enter="_event: mouseenter; _target: #meter3; visible: true"
-            event-set__leave="_event: mouseleave; _target: #meter3; visible: false">
+  
             <a-triangle
               vertex-a="-4.7 0 1"
-              vertex-b="-4.7 0 -31"
+              vertex-b="-4.7 0 -15"
               vertex-c="-1.6 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
             <a-triangle
               vertex-a="-1.6 0 1"
-              vertex-b="-4.7 0 -31"
-              vertex-c="-1.6 0 -31"
+              vertex-b="-4.7 0 -15"
+              vertex-c="-1.6 0 -15"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
-            </a-entity>
-
+  
             <a-triangle
               vertex-a="-1.6 0 1"
-              vertex-b="-1.6 0 -31"
+              vertex-b="-1.6 0 -15"
               vertex-c="-1 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
             <a-triangle
               vertex-a="-1 0 1"
-              vertex-b="-1.6 0 -31"
-              vertex-c="-1 0 -31"
+              vertex-b="-1.6 0 -15"
+              vertex-c="-1 0 -15"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
@@ -132,9 +124,9 @@
               geometry="width:0.5; height:16.1"
             ></a-plane>
   
-            <a-plane id="road3"
-              event-set__enter="_event: mouseenter; _target: #meter3; visible: true"
-              event-set__leave="_event: mouseleave; _target: #meter3; visible: false"
+            <a-plane
+              display-meter
+              text-value="3.5"
               position="1 0 -23"
               rotation="-90 0 0"
               material="side:double;repeat:0.3 2;offset:0.55 0"
@@ -142,9 +134,9 @@
               geometry="width:3.5; height:16.1"
             ></a-plane>
   
-            <a-plane id="road4"
-              event-set__enter="_event: mouseenter; _target: #meter3; visible: true"
-              event-set__leave="_event: mouseleave; _target: #meter3; visible: false"
+            <a-plane
+              display-meter
+              text-value="3"
               position="4.1 0 -23"
               rotation="-90 0 0"
               material="side:double;repeat:0.3 2;offset:0.55 0"
@@ -152,9 +144,9 @@
               geometry="width:3; height:16.1"
             ></a-plane>
   
-            <a-plane id="road5"
-              event-set__enter="_event: mouseenter; _target: #meter3d5; visible: true"
-              event-set__leave="_event: mouseleave; _target: #meter3d5; visible: false"
+            <a-plane
+              display-meter
+              text-value="3.5"
               position="7.3 0 -23"
               rotation="-90 0 0"
               material="side:double;repeat:0.3 2;offset:0.55 0"
@@ -400,7 +392,7 @@
               {"type":"turn-lane","variantString":"inbound|straight","width":11.66667},
               {"type":"turn-lane","variantString":"inbound|right-straight","width":10},
               {"type":"parking-lane","variantString":"outbound|right","width":1.66667},
-              {"type":"divider","variantString":"planting-strip","width":6.66667},
+              {"type":"divider","variantString":"median","width":6.66667},
               {"type":"parking-lane","variantString":"inbound|left","width":1.66667},
               {"type":"drive-lane","variantString":"outbound|car","width":10},
               {"type":"drive-lane","variantString":"outbound|car","width":11.66667},
@@ -409,14 +401,19 @@
               {"type":"sidewalk","variantString":"normal","width":6.66667}]
             }'
           ></a-entity>
+          <a-plane display-meter text-value="3.5" position="-6.4 0 -99" rotation="-90 0 0" material="side:double;repeat:0.3 2;offset:0.55 0" src="#drive-lane-texture" geometry="width:3.5; height:16"></a-plane>
+          <a-plane display-meter text-value="3" position="-3 0 -99" rotation="-90 0 0" material="side:double;repeat:0.3 2;offset:0.55 0" src="#drive-lane-texture" geometry="width:3; height:16"></a-plane>  
+          <a-plane display-meter text-value="3.5" position="-11 0.1 -99" rotation="-90 0 0" material="side:double;repeat:1.5 10;offset:0.55 0" src="#sidewalk-texture" geometry="width:3.5; height:16"></a-plane>
+          <a-plane display-meter text-value="3.5" position="11 0.1 -99" rotation="-90 0 0" material="side:double;repeat:1.5 10;offset:0.55 0" src="#sidewalk-texture" geometry="width:3.2; height:16"></a-plane>
+          <a-plane position="0 -0.1 -99" rotation="-90 0 0" material="side:double;repeat:0.3 2;offset:0.55 0" src="#drive-lane-texture" geometry="width:15; height:18"></a-plane>
         </a-entity>
   
-        <a-entity position="0 0 -229.5" rotation="0 180 0">
+        <a-entity position="0 0 -114.5" rotation="0 180 0">
           <!--馬路 由左至右-->
           <a-entity position="0 0 -76">
             <a-triangle
               vertex-a="-9.15 0 1"
-              vertex-b="-9.15 0 -31"
+              vertex-b="-9.15 0 -32"
               vertex-c="-8.2 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
@@ -429,55 +426,47 @@
               src="#drive-lane-texture"
             ></a-triangle>
   
-            <a-entity id="road6"
-            event-set__enter="_event: mouseenter; _target: #meter3d5; visible: true"
-            event-set__leave="_event: mouseleave; _target: #meter3d5; visible: false">
-              <a-triangle
+            <a-triangle
               vertex-a="-8.2 0 1"
-              vertex-b="-8.2 0 -31"
+              vertex-b="-8.2 0 -15"
               vertex-c="-4.7 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
             <a-triangle
               vertex-a="-4.7 0 1"
-              vertex-b="-8.2 0 -31"
-              vertex-c="-4.7 0 -31"
+              vertex-b="-8.2 0 -15"
+              vertex-c="-4.7 0 -15"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
-            </a-entity>
-            
-            <a-entity id="road7"
-            event-set__enter="_event: mouseenter; _target: #meter3; visible: true"
-            event-set__leave="_event: mouseleave; _target: #meter3; visible: false">
+  
             <a-triangle
               vertex-a="-4.7 0 1"
-              vertex-b="-4.7 0 -31"
+              vertex-b="-4.7 0 -15"
               vertex-c="-1.6 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
             <a-triangle
               vertex-a="-1.6 0 1"
-              vertex-b="-4.7 0 -31"
-              vertex-c="-1.6 0 -31"
+              vertex-b="-4.7 0 -15"
+              vertex-c="-1.6 0 -15"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
-            </a-entity>
-
+  
             <a-triangle
               vertex-a="-1.6 0 1"
-              vertex-b="-1.6 0 -31"
+              vertex-b="-1.6 0 -15"
               vertex-c="-1 0 1"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
             <a-triangle
               vertex-a="-1 0 1"
-              vertex-b="-1.6 0 -31"
-              vertex-c="-1 0 -31"
+              vertex-b="-1.6 0 -15"
+              vertex-c="-1 0 -15"
               material="side:double;repeat:0.3 2;offset:0.55 0"
               src="#drive-lane-texture"
             ></a-triangle>
@@ -498,9 +487,9 @@
               geometry="width:0.5; height:16.1"
             ></a-plane>
   
-            <a-plane id="road8"
-              event-set__enter="_event: mouseenter; _target: #meter3; visible: true"
-              event-set__leave="_event: mouseleave; _target: #meter3; visible: false"
+            <a-plane
+              display-meter
+              text-value="3.5"
               position="1 0 -23"
               rotation="-90 0 0"
               material="side:double;repeat:0.3 2;offset:0.55 0"
@@ -508,9 +497,9 @@
               geometry="width:3.5; height:16.1"
             ></a-plane>
   
-            <a-plane id="road9"
-              event-set__enter="_event: mouseenter; _target: #meter3; visible: true"
-              event-set__leave="_event: mouseleave; _target: #meter3; visible: false"
+            <a-plane
+              display-meter
+              text-value="3"
               position="4.1 0 -23"
               rotation="-90 0 0"
               material="side:double;repeat:0.3 2;offset:0.55 0"
@@ -518,9 +507,9 @@
               geometry="width:3; height:16.1"
             ></a-plane>
   
-            <a-plane id="road10"
-              event-set__enter="_event: mouseenter; _target: #meter3d5; visible: true"
-              event-set__leave="_event: mouseleave; _target: #meter3d5; visible: false"
+            <a-plane
+              display-meter
+              text-value="3.5"
               position="7.3 0 -23"
               rotation="-90 0 0"
               material="side:double;repeat:0.3 2;offset:0.55 0"
@@ -758,7 +747,7 @@
               {"type":"turn-lane","variantString":"inbound|straight","width":11.66667},
               {"type":"turn-lane","variantString":"inbound|right-straight","width":10},
               {"type":"parking-lane","variantString":"outbound|right","width":1.66667},
-              {"type":"divider","variantString":"planting-strip","width":6.66667},
+              {"type":"divider","variantString":"median","width":6.66667},
               {"type":"parking-lane","variantString":"inbound|left","width":1.66667},
               {"type":"drive-lane","variantString":"outbound|car","width":10},
               {"type":"drive-lane","variantString":"outbound|car","width":11.66667},
@@ -767,71 +756,78 @@
               {"type":"sidewalk","variantString":"normal","width":6.66667}]
             }'
           ></a-entity>
+          <a-plane display-meter text-value="3.5" position="-6.4 0 -99" rotation="-90 0 0" material="side:double;repeat:0.3 2;offset:0.55 0" src="#drive-lane-texture" geometry="width:3.5; height:16"></a-plane>
+          <a-plane display-meter text-value="3" position="-3 0 -99" rotation="-90 0 0" material="side:double;repeat:0.3 2;offset:0.55 0" src="#drive-lane-texture" geometry="width:3; height:16"></a-plane>  
+          <a-plane display-meter text-value="3.5" position="-11 0.1 -99" rotation="-90 0 0" material="side:double;repeat:1.5 10;offset:0.55 0" src="#sidewalk-texture" geometry="width:3.5; height:16"></a-plane>
+          <a-plane display-meter text-value="3.5" position="11 0.1 -99" rotation="-90 0 0" material="side:double;repeat:1.5 10;offset:0.55 0" src="#sidewalk-texture" geometry="width:3.2; height:16"></a-plane>
+          <a-plane position="0 -0.1 -99" rotation="-90 0 0" material="side:double;repeat:0.3 2;offset:0.55 0" src="#drive-lane-texture" geometry="width:15; height:18"></a-plane>
         </a-entity>
   
         <!--不重要道路(上下)-->
-        <a-entity id="unimportant" position="0 -0.1 -114.7" scale="1.7 1 1">
+        <a-entity id="unimportant" position="0 -0.1 0">
           <a-entity
-            position="-82.5 0 0"
+            position="-75 0 0"
             rotation="0 90 0"
-            id="street-parent"
-            street='showGround: false; left: grass; right: grass; JSON:
-            {
-              "streetmixSegmentsFeet": [
-              {"type":"sidewalk","variantString":"normal","width":10},
-              {"type":"parking-lane","variantString":"inbound|right","width":3.33333},
-              {"type":"turn-lane","variantString":"inbound|straight","width":11.66667},
-              {"type":"turn-lane","variantString":"inbound|right-straight","width":10},
-              {"type":"parking-lane","variantString":"outbound|right","width":0.66667},
-              {"type":"parking-lane","variantString":"inbound|left","width":0.66667},
-              {"type":"drive-lane","variantString":"outbound|car","width":10},
-              {"type":"drive-lane","variantString":"outbound|car","width":11.66667},
-              {"type":"parking-lane","variantString":"outbound|left","width":3.33333},
-              {"type":"sidewalk","variantString":"normal","width":10}]
-            }'
+            id="up"
+            street='showGround: false; left: none; right: none; JSON:
+          {
+            "streetmixSegmentsFeet": [
+            {"width":10,"type":"sidewalk","variantString":"dense"},
+            {"width":15,"type":"drive-lane","variantString":"inbound|car"},
+            {"width":15,"type":"drive-lane","variantString":"outbound|car"},
+            {"width":10,"type":"sidewalk","variantString":"dense"}
+            ]
+          }'
           ></a-entity>
-  
+
           <a-entity
-            position="82.5 0 0"
+            position="75 0 0"
             rotation="0 90 0"
-            id="street-parent"
-            street='showGround: false; left: grass; right: grass; JSON:
-            {
-              "streetmixSegmentsFeet": [
-              {"type":"sidewalk","variantString":"normal","width":10},
-              {"type":"parking-lane","variantString":"inbound|right","width":3.33333},
-              {"type":"turn-lane","variantString":"inbound|straight","width":11.66667},
-              {"type":"turn-lane","variantString":"inbound|right-straight","width":10},
-              {"type":"parking-lane","variantString":"outbound|right","width":0.66667},
-              {"type":"parking-lane","variantString":"inbound|left","width":0.66667},
-              {"type":"drive-lane","variantString":"outbound|car","width":10},
-              {"type":"drive-lane","variantString":"outbound|car","width":11.66667},
-              {"type":"parking-lane","variantString":"outbound|left","width":3.33333},
-              {"type":"sidewalk","variantString":"normal","width":10}]
-            }'
+            id="down"
+            street='showGround: false; left: none; right: none; JSON:
+          {
+            "streetmixSegmentsFeet": [
+            {"width":10,"type":"sidewalk","variantString":"dense"},
+            {"width":15,"type":"drive-lane","variantString":"inbound|car"},
+            {"width":15,"type":"drive-lane","variantString":"outbound|car"},
+            {"width":10,"type":"sidewalk","variantString":"dense"}
+            ]
+          }'
           ></a-entity>
-  
-          <a-plane position="0 0 0" rotation="-90 0 0" width="15" height="15.5" color="#545f59"></a-plane>
+
+          <a-plane
+            id="panel"
+            position="0 0.1 0"
+            rotation="-90 0 0"
+            width="15"
+            height="15"
+            color="#545f59"
+          ></a-plane>
           <a-text
-            position="0 0 -2.7"
+            id='text'
+            position="0 0.1 0"
             rotation="-90 -90 0"
-            id="meter3"
+            align="center"
             value="3m"
             color="white"
-            scale="16 10 10"
-            visible="false"
-          ></a-text>
-          <a-text
-            position="0 0 -3.7"
-            rotation="-90 -90 0"
-            id="meter3d5"
-            value="3.5m"
-            color="white"
-            scale="16 10 10"
-            visible="false"
+            scale="10 10 10"
+            visible='false'
           ></a-text>
         </a-entity>
       </a-entity>
     </a-scene>
   </body>
+  <script>
+    setTimeout(() => {
+      let totalWidth = 83.33333 * 0.3048;
+      console.log(totalWidth);
+      document.getElementById("panel").setAttribute("width", totalWidth);
+      document
+        .getElementById("up")
+        .setAttribute("position", -75 - totalWidth / 2 + " 0 0");
+      document
+        .getElementById("down")
+        .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
+    }, 5000);
+  </script>
 </html>

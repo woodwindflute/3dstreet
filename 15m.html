@@ -54,20 +54,9 @@
       <a-entity id="cameraRig" position="0 20 50">
         <a-entity id="camera" camera wasd-controls look-controls></a-entity>
       </a-entity>
-
       <a-entity light="type: ambient; color: #FFF; intensity: 2"></a-entity>
-      <a-entity
-        light="type: directional; color: #FFF; intensity: 0.6"
-        position="0.5 1 -1"
-      ></a-entity>
-
-      <a-ocean-plane
-        height="100"
-        width="100"
-        position="0 -1 0"
-        material="envMap: #skycube;"
-      ></a-ocean-plane>
-
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="0.5 1 -1"></a-entity>
+      <a-ocean-plane height="100" width="100" position="0 -1 0" material="envMap: #skycube;"></a-ocean-plane>
       <a-entity id="skybox" cubemap="folder: assets/images/skybox/"></a-entity>
 
       <a-entity id="main" position="0 0 124.5">
@@ -260,21 +249,19 @@
         ></a-entity>
 
         <a-plane id="panel" position="0 0.1 0" rotation="-90 0 0" width="15" height="15" color="#545f59"></a-plane>
-        <a-text id='text' align="center" position="0 5 0" side="double" value="3m" color="white" scale="15 15 15"
+        <a-text id='text' align="center" position="0 5 0" side="double" value="3m" color="white" scale="15 15 15" visible="false"
           animation="property: rotation; to: 0 360 0; loop: true; dur: 5000 fill: forwards;" ></a-text>
       </a-entity>
     </a-scene>
   </body>
   <script>
-    setTimeout(() => {
-      let totalWidth = 50 * 0.3048;
-      document.getElementById("panel").setAttribute("width", totalWidth);
-      document
-        .getElementById("up")
-        .setAttribute("position", -75 - totalWidth / 2 + " 0 0");
-      document
-        .getElementById("down")
-        .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
-    }, 4000);
+    let totalWidth = 50 * 0.3048;
+    document.getElementById("panel").setAttribute("width", totalWidth);
+    document
+      .getElementById("up")
+      .setAttribute("position", -75 - totalWidth / 2 + " 0 0");
+    document
+      .getElementById("down")
+      .setAttribute("position", 75 + totalWidth / 2 + " 0 0");
   </script>
 </html>
