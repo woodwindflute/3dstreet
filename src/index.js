@@ -258,7 +258,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[0].variantString == "normal" &&
           streetmixSegments[0].width == 8.33333 &&
           streetmixSegments[1].type == "divider" &&
-          streetmixSegments[1].variantString == "median" &&
+          streetmixSegments[1].variantString == "planting-strip" &&
           streetmixSegments[1].width == 5 &&
           streetmixSegments[2].type == "bike-lane" &&
           streetmixSegments[2].variantString == "inbound|regular|road" &&
@@ -306,7 +306,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[16].variantString == "outbound|regular|road" &&
           streetmixSegments[16].width == 6.66667 &&
           streetmixSegments[17].type == "divider" &&
-          streetmixSegments[17].variantString == "median" &&
+          streetmixSegments[17].variantString == "planting-strip" &&
           streetmixSegments[17].width == 5 &&
           streetmixSegments[18].type == "sidewalk" &&
           streetmixSegments[18].variantString == "normal" &&
