@@ -2,7 +2,7 @@
 
 (function () {
   function buildAssetHTML (assetUrl) {
-    if (!assetUrl) assetUrl = 'https://github.3d.st/';
+    if (!assetUrl) assetUrl = './';
     console.log('[street]', 'Using street assets from', assetUrl);
     return `
           <!-- audio -->
