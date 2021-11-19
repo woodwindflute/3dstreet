@@ -181,7 +181,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[5].variantString == "inbound|right" &&
           streetmixSegments[5].width == 1.66667 &&
           streetmixSegments[6].type == "divider" &&
-          streetmixSegments[6].variantString == "median" &&
+          (streetmixSegments[6].variantString == "median" || streetmixSegments[6].variantString == "striped-buffer") &&
           streetmixSegments[6].width == 6.66667 &&
           streetmixSegments[7].type == "parking-lane" &&
           streetmixSegments[7].variantString == "inbound|left" &&
@@ -226,7 +226,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[6].variantString == "inbound|right" &&
           streetmixSegments[6].width == 1.66667 &&
           streetmixSegments[7].type == "divider" &&
-          streetmixSegments[7].variantString == "median" &&
+          (streetmixSegments[7].variantString == "median" || streetmixSegments[7].variantString == "striped-buffer") &&
           streetmixSegments[7].width == 6.66667 &&
           streetmixSegments[8].type == "parking-lane" &&
           streetmixSegments[8].variantString == "inbound|left" &&
@@ -282,7 +282,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[8].variantString == "inbound|right" &&
           streetmixSegments[8].width == 1.66667 &&
           streetmixSegments[9].type == "divider" &&
-          streetmixSegments[9].variantString == "median" &&
+          (streetmixSegments[9].variantString == "median" || streetmixSegments[9].variantString == "striped-buffer") &&
           streetmixSegments[9].width == 6.66667 &&
           streetmixSegments[10].type == "parking-lane" &&
           streetmixSegments[10].variantString == "inbound|left" &&
@@ -313,6 +313,158 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[18].width == 8.33333
         )
           window.location.replace("40m.html");
+
+        //25mP
+        if (
+          streetmixSegments[0].type == "sidewalk" &&
+          streetmixSegments[0].width == 6.66667 &&
+          streetmixSegments[1].type == "sidewalk" &&
+          streetmixSegments[1].width == 5 &&
+          streetmixSegments[2].type == "parking-lane" &&
+          streetmixSegments[2].variantString == "inbound|right" &&
+          streetmixSegments[2].width == 3.33333 &&
+          streetmixSegments[3].type == "drive-lane" &&
+          streetmixSegments[3].variantString == "inbound|car" &&
+          streetmixSegments[3].width == 11.66667 &&
+          streetmixSegments[4].type == "turn-lane" &&
+          streetmixSegments[4].variantString == "inbound|left-straight" &&
+          streetmixSegments[4].width == 10 &&
+          streetmixSegments[5].type == "parking-lane" &&
+          streetmixSegments[5].variantString == "inbound|right" &&
+          streetmixSegments[5].width == 1.66667 &&
+          streetmixSegments[6].type == "divider" &&
+          streetmixSegments[6].variantString == "planting-strip" &&
+          streetmixSegments[6].width == 6.66667 &&
+          streetmixSegments[7].type == "parking-lane" &&
+          streetmixSegments[7].variantString == "inbound|left" &&
+          streetmixSegments[7].width == 1.66667 &&
+          streetmixSegments[8].type == "turn-lane" &&
+          streetmixSegments[8].variantString == "outbound|left-straight" &&
+          streetmixSegments[8].width == 10 &&
+          streetmixSegments[9].type == "drive-lane" &&
+          streetmixSegments[9].variantString == "outbound|car" &&
+          streetmixSegments[9].width == 11.66667 &&
+          streetmixSegments[10].type == "parking-lane" &&
+          streetmixSegments[10].variantString == "inbound|left" &&
+          streetmixSegments[10].width == 3.33333 &&
+          streetmixSegments[11].type == "sidewalk" &&
+          streetmixSegments[11].width == 5 &&
+          streetmixSegments[12].type == "sidewalk" &&
+          streetmixSegments[12].width == 6.66667
+        )
+          window.location.replace("25mP.html");
+
+        //30mP
+        if (
+          streetmixSegments[0].type == "sidewalk" &&
+          streetmixSegments[0].variantString == "normal" &&
+          streetmixSegments[0].width == 8.33333 &&
+          streetmixSegments[1].type == "bike-lane" &&
+          streetmixSegments[1].variantString == "inbound|regular|road" &&
+          streetmixSegments[1].width == 5 &&
+          streetmixSegments[2].type == "sidewalk" &&
+          streetmixSegments[2].variantString == "empty" &&
+          streetmixSegments[2].width == 6.66667 &&
+          streetmixSegments[3].type == "parking-lane" &&
+          streetmixSegments[3].variantString == "inbound|right" &&
+          streetmixSegments[3].width == 3.33333 &&
+          streetmixSegments[4].type == "drive-lane" &&
+          streetmixSegments[4].variantString == "inbound|car" &&
+          streetmixSegments[4].width == 11.66667 &&
+          streetmixSegments[5].type == "turn-lane" &&
+          streetmixSegments[5].variantString == "inbound|left-straight" &&
+          streetmixSegments[5].width == 10 &&
+          streetmixSegments[6].type == "parking-lane" &&
+          streetmixSegments[6].variantString == "inbound|right" &&
+          streetmixSegments[6].width == 1.66667 &&
+          streetmixSegments[7].type == "divider" &&
+          streetmixSegments[7].variantString == "planting-strip" &&
+          streetmixSegments[7].width == 6.66667 &&
+          streetmixSegments[8].type == "parking-lane" &&
+          streetmixSegments[8].variantString == "inbound|left" &&
+          streetmixSegments[8].width == 1.66667 &&
+          streetmixSegments[9].type == "turn-lane" &&
+          streetmixSegments[9].variantString == "outbound|left-straight" &&
+          streetmixSegments[9].width == 10 &&
+          streetmixSegments[10].type == "drive-lane" &&
+          streetmixSegments[10].variantString == "outbound|car" &&
+          streetmixSegments[10].width == 11.66667 &&
+          streetmixSegments[11].type == "parking-lane" &&
+          streetmixSegments[11].variantString == "inbound|left" &&
+          streetmixSegments[11].width == 3.33333 &&
+          streetmixSegments[12].type == "sidewalk" &&
+          streetmixSegments[12].variantString == "empty" &&
+          streetmixSegments[12].width == 6.66667 &&
+          streetmixSegments[13].type == "bike-lane" &&
+          streetmixSegments[13].variantString == "outbound|regular|road" &&
+          streetmixSegments[13].width == 5 &&
+          streetmixSegments[14].type == "sidewalk" &&
+          streetmixSegments[14].variantString == "normal" &&
+          streetmixSegments[14].width == 8.33333
+        )
+          window.location.replace("30mP.html");
+
+        //40mP
+        if (
+          streetmixSegments[0].type == "sidewalk" &&
+          streetmixSegments[0].variantString == "normal" &&
+          streetmixSegments[0].width == 8.33333 &&
+          streetmixSegments[1].type == "divider" &&
+          streetmixSegments[1].variantString == "planting-strip" &&
+          streetmixSegments[1].width == 5 &&
+          streetmixSegments[2].type == "bike-lane" &&
+          streetmixSegments[2].variantString == "inbound|regular|road" &&
+          streetmixSegments[2].width == 6.66667 &&
+          streetmixSegments[3].type == "sidewalk" &&
+          streetmixSegments[3].variantString == "empty" &&
+          streetmixSegments[3].width == 5 &&
+          streetmixSegments[4].type == "parking-lane" &&
+          streetmixSegments[4].variantString == "inbound|right" &&
+          streetmixSegments[4].width == 3.33333 &&
+          streetmixSegments[5].type == "drive-lane" &&
+          streetmixSegments[5].variantString == "inbound|sharrow" &&
+          streetmixSegments[5].width == 11.66667 &&
+          streetmixSegments[6].type == "drive-lane" &&
+          streetmixSegments[6].variantString == "inbound|car" &&
+          streetmixSegments[6].width == 11.66667 &&
+          streetmixSegments[7].type == "turn-lane" &&
+          streetmixSegments[7].variantString == "inbound|left-straight" &&
+          streetmixSegments[7].width == 10 &&
+          streetmixSegments[8].type == "parking-lane" &&
+          streetmixSegments[8].variantString == "inbound|right" &&
+          streetmixSegments[8].width == 1.66667 &&
+          streetmixSegments[9].type == "divider" &&
+          streetmixSegments[9].variantString == "planting-strip" &&
+          streetmixSegments[9].width == 6.66667 &&
+          streetmixSegments[10].type == "parking-lane" &&
+          streetmixSegments[10].variantString == "inbound|left" &&
+          streetmixSegments[10].width == 1.66667 &&
+          streetmixSegments[11].type == "turn-lane" &&
+          streetmixSegments[11].variantString == "outbound|left-straight" &&
+          streetmixSegments[11].width == 10 &&
+          streetmixSegments[12].type == "drive-lane" &&
+          streetmixSegments[12].variantString == "outbound|car" &&
+          streetmixSegments[12].width == 11.66667 &&
+          streetmixSegments[13].type == "drive-lane" &&
+          streetmixSegments[13].variantString == "outbound|sharrow" &&
+          streetmixSegments[13].width == 11.66667 &&
+          streetmixSegments[14].type == "parking-lane" &&
+          streetmixSegments[14].variantString == "inbound|left" &&
+          streetmixSegments[14].width == 3.33333 &&
+          streetmixSegments[15].type == "sidewalk" &&
+          streetmixSegments[15].variantString == "empty" &&
+          streetmixSegments[15].width == 5 &&
+          streetmixSegments[16].type == "bike-lane" &&
+          streetmixSegments[16].variantString == "outbound|regular|road" &&
+          streetmixSegments[16].width == 6.66667 &&
+          streetmixSegments[17].type == "divider" &&
+          streetmixSegments[17].variantString == "planting-strip" &&
+          streetmixSegments[17].width == 5 &&
+          streetmixSegments[18].type == "sidewalk" &&
+          streetmixSegments[18].variantString == "normal" &&
+          streetmixSegments[18].width == 8.33333
+        )
+          window.location.replace("40mP.html");
 
         let totalWidth = 0;
         for (let i = 0; i < streetmixSegments.length; i++) {
