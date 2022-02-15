@@ -166,7 +166,7 @@ AFRAME.registerComponent("streetmix-loader", {
         if (
           streetmixSegments[0].type == "sidewalk" &&
           streetmixSegments[0].width == 6.66667 &&
-          streetmixSegments[1].type == "sidewalk" || streetmixSegments[1].type == "public-zone" &&
+          streetmixSegments[1].type == "sidewalk" &&
           streetmixSegments[1].width == 5 &&
           streetmixSegments[2].type == "parking-lane" &&
           streetmixSegments[2].variantString == "inbound|right" &&
@@ -195,7 +195,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[10].type == "parking-lane" &&
           streetmixSegments[10].variantString == "inbound|left" &&
           streetmixSegments[10].width == 3.33333 &&
-          streetmixSegments[11].type == "sidewalk"  || streetmixSegments[11].type == "public-zone" &&
+          streetmixSegments[11].type == "sidewalk" &&
           streetmixSegments[11].width == 5 &&
           streetmixSegments[12].type == "sidewalk" &&
           streetmixSegments[12].width == 6.66667
@@ -210,7 +210,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[1].type == "bike-lane" &&
           streetmixSegments[1].variantString == "inbound|regular|road" &&
           streetmixSegments[1].width == 5 &&
-          streetmixSegments[2].type == "public-zone" &&
+          streetmixSegments[2].type == "sidewalk" &&
           streetmixSegments[2].variantString == "empty" &&
           streetmixSegments[2].width == 6.66667 &&
           streetmixSegments[3].type == "parking-lane" &&
@@ -240,7 +240,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[11].type == "parking-lane" &&
           streetmixSegments[11].variantString == "inbound|left" &&
           streetmixSegments[11].width == 3.33333 &&
-          streetmixSegments[12].type == "public-zone" &&
+          streetmixSegments[12].type == "sidewalk" &&
           streetmixSegments[12].variantString == "empty" &&
           streetmixSegments[12].width == 6.66667 &&
           streetmixSegments[13].type == "bike-lane" &&
@@ -263,7 +263,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[2].type == "bike-lane" &&
           streetmixSegments[2].variantString == "inbound|regular|road" &&
           streetmixSegments[2].width == 6.66667 &&
-          streetmixSegments[3].type == "public-zone" &&
+          streetmixSegments[3].type == "sidewalk" &&
           streetmixSegments[3].variantString == "empty" &&
           streetmixSegments[3].width == 5 &&
           streetmixSegments[4].type == "parking-lane" &&
@@ -299,7 +299,7 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[14].type == "parking-lane" &&
           streetmixSegments[14].variantString == "inbound|left" &&
           streetmixSegments[14].width == 3.33333 &&
-          streetmixSegments[15].type == "public-zone" &&
+          streetmixSegments[15].type == "sidewalk" &&
           streetmixSegments[15].variantString == "empty" &&
           streetmixSegments[15].width == 5 &&
           streetmixSegments[16].type == "bike-lane" &&
