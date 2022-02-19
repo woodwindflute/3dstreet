@@ -205,13 +205,11 @@ AFRAME.registerComponent("streetmix-loader", {
         //30m
         if (
           streetmixSegments[0].type == "sidewalk" &&
-          streetmixSegments[0].variantString == "normal" &&
           streetmixSegments[0].width == 8.33333 &&
           streetmixSegments[1].type == "bike-lane" &&
           streetmixSegments[1].variantString == "inbound|regular|road" &&
           streetmixSegments[1].width == 5 &&
           streetmixSegments[2].type == "sidewalk" &&
-          streetmixSegments[2].variantString == "empty" &&
           streetmixSegments[2].width == 6.66667 &&
           streetmixSegments[3].type == "parking-lane" &&
           streetmixSegments[3].variantString == "inbound|right" &&
@@ -241,13 +239,11 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[11].variantString == "inbound|left" &&
           streetmixSegments[11].width == 3.33333 &&
           streetmixSegments[12].type == "sidewalk" &&
-          streetmixSegments[12].variantString == "empty" &&
           streetmixSegments[12].width == 6.66667 &&
           streetmixSegments[13].type == "bike-lane" &&
           streetmixSegments[13].variantString == "outbound|regular|road" &&
           streetmixSegments[13].width == 5 &&
           streetmixSegments[14].type == "sidewalk" &&
-          streetmixSegments[14].variantString == "normal" &&
           streetmixSegments[14].width == 8.33333
         )
           window.location.replace("30m.html");
@@ -255,16 +251,13 @@ AFRAME.registerComponent("streetmix-loader", {
         //40m
         if (
           streetmixSegments[0].type == "sidewalk" &&
-          streetmixSegments[0].variantString == "normal" &&
           streetmixSegments[0].width == 8.33333 &&
-          streetmixSegments[1].type == "divider" &&
           streetmixSegments[1].variantString == "planting-strip" &&
           streetmixSegments[1].width == 5 &&
           streetmixSegments[2].type == "bike-lane" &&
           streetmixSegments[2].variantString == "inbound|regular|road" &&
           streetmixSegments[2].width == 6.66667 &&
           streetmixSegments[3].type == "sidewalk" &&
-          streetmixSegments[3].variantString == "empty" &&
           streetmixSegments[3].width == 5 &&
           streetmixSegments[4].type == "parking-lane" &&
           streetmixSegments[4].variantString == "inbound|right" &&
@@ -300,16 +293,13 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[14].variantString == "inbound|left" &&
           streetmixSegments[14].width == 3.33333 &&
           streetmixSegments[15].type == "sidewalk" &&
-          streetmixSegments[15].variantString == "empty" &&
           streetmixSegments[15].width == 5 &&
           streetmixSegments[16].type == "bike-lane" &&
           streetmixSegments[16].variantString == "outbound|regular|road" &&
           streetmixSegments[16].width == 6.66667 &&
-          streetmixSegments[17].type == "divider" &&
           streetmixSegments[17].variantString == "planting-strip" &&
           streetmixSegments[17].width == 5 &&
           streetmixSegments[18].type == "sidewalk" &&
-          streetmixSegments[18].variantString == "normal" &&
           streetmixSegments[18].width == 8.33333
         )
           window.location.replace("40m.html");
@@ -357,13 +347,11 @@ AFRAME.registerComponent("streetmix-loader", {
         //30mP
         if (
           streetmixSegments[0].type == "sidewalk" &&
-          streetmixSegments[0].variantString == "normal" &&
           streetmixSegments[0].width == 8.33333 &&
           streetmixSegments[1].type == "bike-lane" &&
           streetmixSegments[1].variantString == "inbound|regular|road" &&
           streetmixSegments[1].width == 5 &&
           streetmixSegments[2].type == "sidewalk" &&
-          streetmixSegments[2].variantString == "empty" &&
           streetmixSegments[2].width == 6.66667 &&
           streetmixSegments[3].type == "parking-lane" &&
           streetmixSegments[3].variantString == "inbound|right" &&
@@ -393,13 +381,11 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[11].variantString == "inbound|left" &&
           streetmixSegments[11].width == 3.33333 &&
           streetmixSegments[12].type == "sidewalk" &&
-          streetmixSegments[12].variantString == "empty" &&
           streetmixSegments[12].width == 6.66667 &&
           streetmixSegments[13].type == "bike-lane" &&
           streetmixSegments[13].variantString == "outbound|regular|road" &&
           streetmixSegments[13].width == 5 &&
           streetmixSegments[14].type == "sidewalk" &&
-          streetmixSegments[14].variantString == "normal" &&
           streetmixSegments[14].width == 8.33333
         )
           window.location.replace("30mP.html");
@@ -407,16 +393,13 @@ AFRAME.registerComponent("streetmix-loader", {
         //40mP
         if (
           streetmixSegments[0].type == "sidewalk" &&
-          streetmixSegments[0].variantString == "normal" &&
           streetmixSegments[0].width == 8.33333 &&
-          streetmixSegments[1].type == "divider" &&
           streetmixSegments[1].variantString == "planting-strip" &&
           streetmixSegments[1].width == 5 &&
           streetmixSegments[2].type == "bike-lane" &&
           streetmixSegments[2].variantString == "inbound|regular|road" &&
           streetmixSegments[2].width == 6.66667 &&
           streetmixSegments[3].type == "sidewalk" &&
-          streetmixSegments[3].variantString == "empty" &&
           streetmixSegments[3].width == 5 &&
           streetmixSegments[4].type == "parking-lane" &&
           streetmixSegments[4].variantString == "inbound|right" &&
@@ -452,16 +435,13 @@ AFRAME.registerComponent("streetmix-loader", {
           streetmixSegments[14].variantString == "inbound|left" &&
           streetmixSegments[14].width == 3.33333 &&
           streetmixSegments[15].type == "sidewalk" &&
-          streetmixSegments[15].variantString == "empty" &&
           streetmixSegments[15].width == 5 &&
           streetmixSegments[16].type == "bike-lane" &&
           streetmixSegments[16].variantString == "outbound|regular|road" &&
           streetmixSegments[16].width == 6.66667 &&
-          streetmixSegments[17].type == "divider" &&
           streetmixSegments[17].variantString == "planting-strip" &&
           streetmixSegments[17].width == 5 &&
           streetmixSegments[18].type == "sidewalk" &&
-          streetmixSegments[18].variantString == "normal" &&
           streetmixSegments[18].width == 8.33333
         )
           window.location.replace("40mP.html");
