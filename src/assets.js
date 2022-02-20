@@ -23,6 +23,7 @@
           <a-asset-item id="lamp-modern-glb" src="${assetUrl}assets/objects/lamp-post-modern-centered.glb"></a-asset-item>
           <a-asset-item id="lamp-traditional-glb" src="${assetUrl}assets/objects/lamp-post-traditional.glb"></a-asset-item>
           <a-asset-item id="bus-stop-glb" src="${assetUrl}assets/objects/ccFO2EGGIq9-bus-stop.glb"></a-asset-item>
+          <a-asset-item id="elec-box-glb" src="${assetUrl}assets/objects/Electrical-box.glb"></a-asset-item>
           <img id="wayfinding-map" src="${assetUrl}assets/objects/wayfinding.jpg" crossorigin="anonymous" />
   
           <!-- vehicles -->
@@ -107,12 +108,14 @@
           <a-mixin id="palm-tree" gltf-model="#palmtreemodel" scale="1 1.5 1"></a-mixin>
           <a-mixin id="bench" gltf-model="#benchmodel" scale="1 1 1"></a-mixin>
           <a-mixin id="track" gltf-model="#trackmodel" scale="1 1 1"></a-mixin>
+          <a-mixin id="parking" geometry="primitive: box; depth: 8; width: 2;" material="opacity: 0.5; color: black"></a-min>
           <a-mixin id="bikerack" gltf-model="#bikerackmodel" scale="0.25 0.25 0.25"></a-mixin>
           <a-mixin id="bikeshare" gltf-model="#bikesharemodel" scale="1 1 1"></a-mixin>
           <a-mixin id="lamp-modern" gltf-model="#lamp-modern-glb" scale="0.5 0.5 0.5"></a-mixin>
           <a-mixin id="lamp-traditional" gltf-model="#lamp-traditional-glb" scale="0.2 0.2 0.2" ></a-mixin>
           <a-mixin id="pride-flag" position="0.409 3.345 0" rotation="0 0 0" scale="0.5 0.75 0" geometry="width:2;height:2;primitive:plane" material="side:double; src:${assetUrl}assets/materials/rainbow-flag-poles_512.png;transparent: true;"></a-mixin>
           <a-mixin id="bus-stop" gltf-model="#bus-stop-glb" rotation="-90 0 0" scale="0.001 0.001 0.001" ></a-mixin>
+          <a-mixin id="elec-box" gltf-model="#elec-box-glb" rotation="0 90 0" scale="0.5 0.5 0.5"></a-mixin>
           <a-mixin id="wayfinding-box" geometry="primitive: box; height: 2; width: 0.84; depth: 0.1" material="color: gray"></a-mixin>
   
           <!-- buildings and blocks -->
@@ -137,7 +140,9 @@
           <img id="parking-lot-texture" src="${assetUrl}assets/materials/TexturesCom_Roads0111_1_seamless_S.jpg" crossorigin="anonymous">
           <img id="asphalt-texture" src="${assetUrl}assets/materials/TexturesCom_AsphaltDamaged0057_1_seamless_S.jpg" crossorigin="anonymous">
 
-          <a-mixin id="public-zone-t1" geometry="width:0.3;height:150;primitive:plane" material="repeat:1 150;offset:0.415 0;normalTextureOffset:0.415 0;src:#grass-texture;normalTextureRepeat:0.21 150;normalMap:#grass-texture"></a-mixin>
+          <a-mixin id="public-grass-t1" geometry="width:0.3;height:150;primitive:plane" material="repeat:1 150;offset:0.415 0;normalTextureOffset:0.415 0;src:#grass-texture;normalTextureRepeat:0.21 150;normalMap:#grass-texture"></a-mixin>
+          <a-mixin id="public-sidewalk-t1" geometry="width:0.3;height:150;primitive:plane" material="repeat:1.5 75;src:#seamless-sidewalk;"></a-mixin>
+
           <a-mixin id="ground-grass" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#grass-texture;repeat:5 5;roughness:1"></a-mixin>
           <a-mixin id="ground-parking-lot" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#parking-lot-texture;repeat:2 4;roughness:1"></a-mixin>
           <a-mixin id="ground-asphalt" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#asphalt-texture;repeat:5 5;roughness:1"></a-mixin>
