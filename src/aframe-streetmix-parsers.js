@@ -438,22 +438,27 @@ function processSegments (segments, showStriping, length) {
       cloneMixinAsChildren({ objectMixinId: 'track', parentEl: tracksParentEl, step: 20.25, radius: clonedObjectRadius });
       // add these trains to the segment parent
       segmentParentEl.append(tracksParentEl);
-    } else if (segments[i].type === 'turn-lane') {
+    } else if (segments[i].type === 'turn-lane' || (segments[i].type === 'drive-lane' && variantList[1] !== 'sharrow')) {
       mixinId = 'drive-lane'; // use normal drive lane road material
       var markerMixinId = variantList[1]; // set the mixin of the road markings to match the current variant name
-
-      // Fix streetmix inbound turn lane orientation (change left to right) per: https://github.com/streetmix/streetmix/issues/683
-      if (variantList[0] === 'inbound') {
-        markerMixinId = markerMixinId.replace(/left|right/g, function (m) {
-          return m === 'left' ? 'right' : 'left';
-        });
+      if (segments[i].type === 'drive-lane') {
+        markerMixinId = 'straight';
       }
-      if (variantList[1] === 'shared') {
-        markerMixinId = 'left';
+      else {
+        // Fix streetmix inbound turn lane orientation (change left to right) per: https://github.com/streetmix/streetmix/issues/683
+        if (variantList[0] === 'inbound') {
+          markerMixinId = markerMixinId.replace(/left|right/g, function (m) {
+            return m === 'left' ? 'right' : 'left';
+          });
+        }
+        if (variantList[1] === 'shared') {
+          markerMixinId = 'left';
+        }
+        if (variantList[1] === 'left-right-straight') {
+          markerMixinId = 'all';
+        }
       }
-      if (variantList[1] === 'left-right-straight') {
-        markerMixinId = 'all';
-      }
+      
       var mixinString = 'stencils ' + markerMixinId;
 
       // make the parent for all the objects to be cloned
