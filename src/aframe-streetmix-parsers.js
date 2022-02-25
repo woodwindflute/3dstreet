@@ -313,6 +313,22 @@ function createLampsParentElement (positionX) {
   return placedObjectEl;
 }
 
+function createCornerElement (positionX, width, direction) {
+  const placedObjectEl = document.createElement('a-entity');
+  placedObjectEl.setAttribute('class','sidewalk-corner');
+  if (direction === 'left') {
+    placedObjectEl.setAttribute('rotation','-90 0 0');
+    placedObjectEl.setAttribute('position', (positionX - 1.53 * width / 10) + ' 0.015 -74.89');
+  } 
+  else {
+    placedObjectEl.setAttribute('rotation','90 180 0');
+    placedObjectEl.setAttribute('position', (positionX + 1.53 * width / 10) + ' 0.015 -74.89');
+  }
+  placedObjectEl.setAttribute('scale', width/10 + ' 1 1');
+  placedObjectEl.setAttribute('mixin','sidewalk-corner');
+  return placedObjectEl;
+}
+
 function createBusStopElement (positionX, parityBusStop, rotationBusStopY) {
   const placedObjectEl = document.createElement('a-entity');
   placedObjectEl.setAttribute('class', 'bus-stop');
@@ -408,6 +424,15 @@ function processSegments (segments, showStriping, length) {
     // planting-strip divider view as public-zone [HY]
     if(segments[i].variantString === 'planting-strip') mixinId = 'public-grass';
     
+    if(segments[i].type === 'sidewalk' && i == 0) {
+      const circleEl = createCornerElement(positionX, segments[i].width, 'left');
+      segmentParentEl.append(circleEl);
+    }
+
+    if(segments[i].type === 'sidewalk' && i == segments.length - 1) {
+      const circleEl = createCornerElement(positionX, segments[i].width, 'right');
+      segmentParentEl.append(circleEl);
+    }
 
     // look at segment type and variant(s) to determine specific cases
     if (segments[i].type === 'drive-lane' && variantList[1] === 'sharrow') {
