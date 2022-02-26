@@ -390,6 +390,10 @@ function processSegments (segments, showStriping, length) {
   streetParentEl.classList.add('street-parent');
 
   var cumulativeWidthInMeters = 0;
+
+  var leftCornerRadius = 0;
+  var rightCornerRadius = 0;
+
   for (var i = 0; i < segments.length; i++) {
     var segmentParentEl = document.createElement('a-entity');
     segmentParentEl.classList.add('segment-parent-' + i);
@@ -424,12 +428,22 @@ function processSegments (segments, showStriping, length) {
     // planting-strip divider view as public-zone [HY]
     if(segments[i].variantString === 'planting-strip') mixinId = 'public-grass';
     
-    if(segments[i].type === 'sidewalk' && i == 0) {
-      const circleEl = createCornerElement(positionX, segments[i].width, 'left');
+    if((segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && i == 0) {
+      leftCornerRadius += segments[i].width;
+    }
+
+    if(i != segments.length - 1 && // condition for prevent illegal access on segments[i] [HY]
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
+      (segments[i + 1].type === 'sidewalk' || segments[i + 1].type === 'public-zone')) {
+        leftCornerRadius += segments[i].width;
+    } else if(i != segments.length - 1 &&
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
+      (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
+      const circleEl = createCornerElement((leftCornerRadius * 0.3048 / 2), leftCornerRadius, 'left');
       segmentParentEl.append(circleEl);
     }
 
-    if(segments[i].type === 'sidewalk' && i == segments.length - 1) {
+    if((segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && i == segments.length - 1) {
       const circleEl = createCornerElement(positionX, segments[i].width, 'right');
       segmentParentEl.append(circleEl);
     }
