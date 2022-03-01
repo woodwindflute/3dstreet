@@ -299,10 +299,33 @@ function createTreesParentElement (positionX) {
   return placedObjectEl;
 }
 
+function createParkingParentElement (positionX) {
+  const placedObjectEl = document.createElement('a-entity');
+  placedObjectEl.setAttribute('class', 'parking-parent');
+  placedObjectEl.setAttribute('position', positionX + ' -0.2 0');
+  return placedObjectEl;
+}
+
 function createLampsParentElement (positionX) {
   const placedObjectEl = document.createElement('a-entity');
   placedObjectEl.setAttribute('class', 'lamp-parent');
   placedObjectEl.setAttribute('position', positionX + ' 0 0'); // position="1.043 0.100 -3.463"
+  return placedObjectEl;
+}
+
+function createCornerElement (positionX, width, direction) {
+  const placedObjectEl = document.createElement('a-entity');
+  placedObjectEl.setAttribute('class','sidewalk-corner');
+  if (direction === 'left') {
+    placedObjectEl.setAttribute('rotation','-90 0 0');
+    placedObjectEl.setAttribute('position', (positionX - 1.53 * width / 10) + ' 0.015 -74.89');
+  } 
+  else {
+    placedObjectEl.setAttribute('rotation','90 180 0');
+    placedObjectEl.setAttribute('position', (positionX + 1.65 * width / 10) + ' 0.015 -74.89');
+  }
+  placedObjectEl.setAttribute('scale', width / 10 + ' 1 1');
+  placedObjectEl.setAttribute('mixin','sidewalk-corner');
   return placedObjectEl;
 }
 
@@ -312,6 +335,14 @@ function createBusStopElement (positionX, parityBusStop, rotationBusStopY) {
   placedObjectEl.setAttribute('position', (positionX + (0.75 * parityBusStop)) + ' 0 0');
   placedObjectEl.setAttribute('rotation', '-90 ' + rotationBusStopY + ' 0');
   placedObjectEl.setAttribute('mixin', 'bus-stop');
+  return placedObjectEl;
+}
+
+function createElecBoxElement (positionX) {
+  const placedObjectEl = document.createElement('a-entity');
+  placedObjectEl.setAttribute('class', 'elec-box');
+  placedObjectEl.setAttribute('position', positionX + ' 0 0');
+  placedObjectEl.setAttribute('mixin', 'elec-box');
   return placedObjectEl;
 }
 
@@ -329,7 +360,7 @@ function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId,
   const scaleY = length / 150;
   const scaleNew = scaleX + ' ' + scaleY + ' 1';
   segmentEl.setAttribute('scale', scaleNew);
-  console.log(scaleNew);
+  //console.log(scaleNew);
   // segmentEl.setAttribute('geometry', 'height', length);
   segmentEl.setAttribute('position', positionX + ' ' + positionY + ' 0');
   // USE THESE 2 LINES FOR TEXTURE MODE:
@@ -337,7 +368,7 @@ function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId,
   segmentEl.setAttribute('mixin', mixinId + state.textures.suffix); // append suffix to mixin id to specify texture index
   segmentEl.setAttribute('text-value', meter); // append suffix to mixin id to specify texture index
   segmentEl.setAttribute('display-meter','red');
-  console.log(segmentEl)
+  //console.log(segmentEl)
   return segmentEl;
 }
 
@@ -359,6 +390,12 @@ function processSegments (segments, showStriping, length) {
   streetParentEl.classList.add('street-parent');
 
   var cumulativeWidthInMeters = 0;
+
+  var leftCornerRadius = 0;
+  var rightCornerRadius = 0;
+  var times = 0;
+  var l = 0;
+
   for (var i = 0; i < segments.length; i++) {
     var segmentParentEl = document.createElement('a-entity');
     segmentParentEl.classList.add('segment-parent-' + i);
@@ -391,7 +428,45 @@ function processSegments (segments, showStriping, length) {
     var mixinId = segments[i].type;
 
     // planting-strip divider view as public-zone [HY]
-    if(segments[i].variantString === 'planting-strip') mixinId = 'public-zone';
+    if(segments[i].variantString === 'planting-strip') mixinId = 'public-grass';
+    
+    // left corner render
+    if((segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && i == 0) {
+      leftCornerRadius = segments[i].width;
+    }
+
+    if(i != segments.length - 1 && // condition for prevent illegal access on segments[i] [HY]
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
+      (segments[i + 1].type === 'sidewalk' || segments[i + 1].type === 'public-zone')) {
+        leftCornerRadius += segments[i].width;
+    } else if(i != segments.length - 1 &&
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
+      (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
+        const circleEl = createCornerElement((leftCornerRadius * 0.3048 / 2), leftCornerRadius, 'left');
+        segmentParentEl.append(circleEl);
+        //console.log(leftCornerRadius);
+    }
+
+    // right corner render
+    if(i != 0 && // condition for prevent illegal access on segments[i] [HY]
+      (segments[i - 1].type !== 'sidewalk' && segments[i - 1].type !== 'public-zone') && 
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
+        rightCornerRadius = segments[i].width;
+        times = 1;
+        l = positionX;
+    }else if(
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')
+    ) {
+        rightCornerRadius += segments[i].width;
+        times ++;
+        l += positionX;
+    }
+    if(i == segments.length - 1 &&
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
+        const circleEl = createCornerElement((l / times), rightCornerRadius, 'right');
+        segmentParentEl.append(circleEl);
+        //console.log(rightCornerRadius);
+    }
 
     // look at segment type and variant(s) to determine specific cases
     if (segments[i].type === 'drive-lane' && variantList[1] === 'sharrow') {
@@ -422,22 +497,27 @@ function processSegments (segments, showStriping, length) {
       cloneMixinAsChildren({ objectMixinId: 'track', parentEl: tracksParentEl, step: 20.25, radius: clonedObjectRadius });
       // add these trains to the segment parent
       segmentParentEl.append(tracksParentEl);
-    } else if (segments[i].type === 'turn-lane') {
+    } else if (segments[i].type === 'turn-lane' || (segments[i].type === 'drive-lane' && variantList[1] !== 'sharrow')) {
       mixinId = 'drive-lane'; // use normal drive lane road material
       var markerMixinId = variantList[1]; // set the mixin of the road markings to match the current variant name
-
-      // Fix streetmix inbound turn lane orientation (change left to right) per: https://github.com/streetmix/streetmix/issues/683
-      if (variantList[0] === 'inbound') {
-        markerMixinId = markerMixinId.replace(/left|right/g, function (m) {
-          return m === 'left' ? 'right' : 'left';
-        });
+      if (segments[i].type === 'drive-lane') {
+        markerMixinId = 'straight';
       }
-      if (variantList[1] === 'shared') {
-        markerMixinId = 'left';
+      else {
+        // Fix streetmix inbound turn lane orientation (change left to right) per: https://github.com/streetmix/streetmix/issues/683
+        if (variantList[0] === 'inbound') {
+          markerMixinId = markerMixinId.replace(/left|right/g, function (m) {
+            return m === 'left' ? 'right' : 'left';
+          });
+        }
+        if (variantList[1] === 'shared') {
+          markerMixinId = 'left';
+        }
+        if (variantList[1] === 'left-right-straight') {
+          markerMixinId = 'all';
+        }
       }
-      if (variantList[1] === 'left-right-straight') {
-        markerMixinId = 'all';
-      }
+      
       var mixinString = 'stencils ' + markerMixinId;
 
       // make the parent for all the objects to be cloned
@@ -453,7 +533,7 @@ function processSegments (segments, showStriping, length) {
         segmentParentEl.append(stencilsParentEl);
       }
     } else if (segments[i].type === 'divider' && variantList[0] === 'bollard') {
-      if(segments[i].variantString==="planting-strip") mixinId = 'public-zone';
+      if(segments[i].variantString==="planting-strip") mixinId = 'public-grass';
       else mixinId = 'divider';
       
       // make some safehits
@@ -462,7 +542,7 @@ function processSegments (segments, showStriping, length) {
       // add the safehits to the segment parent
       segmentParentEl.append(safehitsParentEl);
     } else if (segments[i].type === 'public-zone' && variantList[0] === 'bollard') {
-      mixinId = 'public-zone';
+      mixinId = 'public-sidewalk';
       
       // make some safehits
       const safehitsParentEl = createSafehitsParentElement(positionX);
@@ -518,18 +598,16 @@ function processSegments (segments, showStriping, length) {
     } else if (segments[i].type === 'bikeshare') {
       // make the parent for all the stations
       segmentParentEl.append(createBikeShareStationElement(positionX, variantList));
-    } else if (segments[i].type === 'sidewalk-tree') {
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'tree') {
+      mixinId = 'public-sidewalk';
       // make the parent for all the trees
       const treesParentEl = createTreesParentElement(positionX);
-      if (variantList[0] === 'palm-tree') {
-        objectMixinId = 'palm-tree';
-      } else {
-        objectMixinId = 'tree3';
-      }
+      objectMixinId = 'tree3';
       // clone a bunch of trees under the parent
       cloneMixinAsChildren({ objectMixinId: objectMixinId, parentEl: treesParentEl, randomY: true, radius: clonedObjectRadius });
       segmentParentEl.append(treesParentEl);
-    } else if (segments[i].type === 'sidewalk-lamp' && (variantList[1] === 'modern' || variantList[1] === 'pride')) {
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'lamp') {
+      mixinId = 'public-sidewalk';
       // make the parent for all the lamps
       const lampsParentEl = createLampsParentElement(positionX);
       // clone a bunch of lamps under the parent
@@ -537,27 +615,24 @@ function processSegments (segments, showStriping, length) {
       cloneMixinAsChildren({ objectMixinId: 'lamp-modern', parentEl: lampsParentEl, rotation: '0 ' + rotationCloneY + ' 0', radius: clonedObjectRadius });
       // if modern lamp variant is "both" then clone the lamps again rotated 180º
       segmentParentEl.append(lampsParentEl);
-
-      if (variantList[0] === 'both') {
-        cloneMixinAsChildren({ objectMixinId: 'lamp-modern', parentEl: lampsParentEl, rotation: '0 -90 0', radius: clonedObjectRadius });
-      }
-      // add the pride flags
-      if (variantList[1] === 'pride' && (variantList[0] === 'right' || variantList[0] === 'both')) {
-        cloneMixinAsChildren({ objectMixinId: 'pride-flag', parentEl: lampsParentEl, positionXYString: '0.409 3.345', radius: clonedObjectRadius });
-      }
-      if (variantList[1] === 'pride' && (variantList[0] === 'left' || variantList[0] === 'both')) {
-        cloneMixinAsChildren({ objectMixinId: 'pride-flag', parentEl: lampsParentEl, rotation: '0 -180 0', positionXYString: '-0.409 3.345', radius: clonedObjectRadius });
-      }
-    } else if (segments[i].type === 'sidewalk-lamp' && variantList[1] === 'traditional') {
+      cloneMixinAsChildren({ objectMixinId: 'lamp-modern', parentEl: lampsParentEl, rotation: '0 -90 0', radius: clonedObjectRadius });
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'parking-zone') {
+      mixinId = 'public-sidewalk';
       // make the parent for all the lamps
-      const lampsParentEl = createLampsParentElement(positionX);
+      const ParkingParentEl = createParkingParentElement(positionX);
       // clone a bunch of lamps under the parent
-      cloneMixinAsChildren({ objectMixinId: 'lamp-traditional', parentEl: lampsParentEl, radius: clonedObjectRadius });
-      segmentParentEl.append(lampsParentEl);
-    } else if (segments[i].type === 'transit-shelter') {
+      cloneMixinAsChildren({ objectMixinId: 'parking', parentEl: ParkingParentEl, radius: clonedObjectRadius });
+      segmentParentEl.append(ParkingParentEl);
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'bus-stop') {
+      mixinId = 'public-sidewalk';
       var rotationBusStopY = (variantList[0] === 'right') ? 0 : 180;
       var parityBusStop = (variantList[0] === 'right') ? 1 : -1;
       segmentParentEl.append(createBusStopElement(positionX, parityBusStop, rotationBusStopY));
+    } else if (segments[i].type === 'public-zone' && variantList[0] === 'transformer-box') {
+      mixinId = 'public-sidewalk';
+      var rotationBusStopY = (variantList[0] === 'right') ? 0 : 180;
+      var parityBusStop = (variantList[0] === 'right') ? 1 : -1;
+      segmentParentEl.append(createElecBoxElement(positionX));
     } else if (segments[i].type === 'separator' && variantList[0] === 'dashed') {
       mixinId = 'markings dashed-stripe';
       positionY = positionY + 0.01; // make sure the lane marker is above the asphalt
