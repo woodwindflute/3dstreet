@@ -318,7 +318,7 @@ function createCornerElement (positionX, width, direction) {
   placedObjectEl.setAttribute('class','sidewalk-corner');
   if (direction === 'left') {
     placedObjectEl.setAttribute('rotation','-90 0 0');
-    placedObjectEl.setAttribute('position', (positionX - 1.53 * width / 10) + ' 0.015 -74.89');
+    placedObjectEl.setAttribute('position', '0.01 0.015 -74.89');
   } 
   else {
     placedObjectEl.setAttribute('rotation','90 180 0');
@@ -392,6 +392,7 @@ function processSegments (segments, showStriping, length) {
   var cumulativeWidthInMeters = 0;
 
   var leftCornerRadius = 0;
+  var pass = 0;
   var rightCornerRadius = 0;
   var times = 0;
   var l = 0;
@@ -431,24 +432,27 @@ function processSegments (segments, showStriping, length) {
     if(segments[i].variantString === 'planting-strip') mixinId = 'public-grass';
     
     // left corner render
-    if((segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && i == 0) {
-      leftCornerRadius = segments[i].width;
-    }
-
-    if(i != segments.length - 1 && // condition for prevent illegal access on segments[i] [HY]
-      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
-      (segments[i + 1].type === 'sidewalk' || segments[i + 1].type === 'public-zone')) {
-        leftCornerRadius += segments[i].width;
-    } else if(i != segments.length - 1 &&
-      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
+    if(i === 0 && 
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
+        leftCornerRadius = segments[i].width;
+        pass = 1;
+        console.log(leftCornerRadius);
+    } else if(i !== segments.length - 1 && pass === 1 &&
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') &&
       (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
-        const circleEl = createCornerElement((leftCornerRadius * 0.3048 / 2), leftCornerRadius, 'left');
+        leftCornerRadius += segments[i].width;
+        const circleEl = createCornerElement(positionX, leftCornerRadius, 'left');
         segmentParentEl.append(circleEl);
-        //console.log(leftCornerRadius);
+        pass = 0;
+        console.log(leftCornerRadius);
+    } else if(i !== segments.length - 1 && pass === 1 &&
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') &&
+      (segments[i + 1].type === 'sidewalk' || segments[i + 1].type === 'public-zone')) {
+      leftCornerRadius += segments[i].width;
+      console.log(leftCornerRadius);
     }
-
     // right corner render
-    if(i != 0 && // condition for prevent illegal access on segments[i] [HY]
+    if(i !== 0 && // condition for prevent illegal access on segments[i] [HY]
       (segments[i - 1].type !== 'sidewalk' && segments[i - 1].type !== 'public-zone') && 
       (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
         rightCornerRadius = segments[i].width;
@@ -671,7 +675,7 @@ function processSegments (segments, showStriping, length) {
     }
 
     // add new object
-    console.log('length', length);
+    //console.log('length', length);
     segmentParentEl.append(createSegmentElement(scaleX, positionX, positionY, rotationY, mixinId, length, segmentWidthInMeters));
     // returns JSON output instead
     // append the new surfaceElement to the segmentParentEl
