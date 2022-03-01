@@ -444,7 +444,7 @@ function processSegments (segments, showStriping, length) {
       (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
         const circleEl = createCornerElement((leftCornerRadius * 0.3048 / 2), leftCornerRadius, 'left');
         segmentParentEl.append(circleEl);
-        console.log(leftCornerRadius);
+        //console.log(leftCornerRadius);
     }
 
     // right corner render
@@ -465,7 +465,7 @@ function processSegments (segments, showStriping, length) {
       (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
         const circleEl = createCornerElement((l / times), rightCornerRadius, 'right');
         segmentParentEl.append(circleEl);
-        console.log(rightCornerRadius);
+        //console.log(rightCornerRadius);
     }
 
     // look at segment type and variant(s) to determine specific cases
