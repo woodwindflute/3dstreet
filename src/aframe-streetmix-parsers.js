@@ -432,24 +432,32 @@ function processSegments (segments, showStriping, length) {
     if(segments[i].variantString === 'planting-strip') mixinId = 'public-grass';
     
     // left corner render
-    if(i === 0 && 
-      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
-        leftCornerRadius = segments[i].width;
-        pass = 1;
-        console.log(leftCornerRadius);
-    } else if(i !== segments.length - 1 && pass === 1 &&
+    if(i === 0 && i !== segments.length &&
       (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') &&
       (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
-        leftCornerRadius += segments[i].width;
+        leftCornerRadius = segments[i].width;
         const circleEl = createCornerElement(positionX, leftCornerRadius, 'left');
         segmentParentEl.append(circleEl);
-        pass = 0;
+    } else {
+      if(i === 0 && 
+        (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
+          leftCornerRadius = segments[i].width;
+          pass = 1;
+          console.log(leftCornerRadius);
+      } else if(i !== segments.length - 1 && pass === 1 &&
+        (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') &&
+        (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
+          leftCornerRadius += segments[i].width;
+          const circleEl = createCornerElement(positionX, leftCornerRadius, 'left');
+          segmentParentEl.append(circleEl);
+          pass = 0;
+          console.log(leftCornerRadius);
+      } else if(i !== segments.length - 1 && pass === 1 &&
+        (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') &&
+        (segments[i + 1].type === 'sidewalk' || segments[i + 1].type === 'public-zone')) {
+        leftCornerRadius += segments[i].width;
         console.log(leftCornerRadius);
-    } else if(i !== segments.length - 1 && pass === 1 &&
-      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') &&
-      (segments[i + 1].type === 'sidewalk' || segments[i + 1].type === 'public-zone')) {
-      leftCornerRadius += segments[i].width;
-      console.log(leftCornerRadius);
+      }
     }
     // right corner render
     if(i !== 0 && // condition for prevent illegal access on segments[i] [HY]
