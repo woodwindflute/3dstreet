@@ -322,9 +322,9 @@ function createCornerElement (positionX, width, direction) {
   } 
   else {
     placedObjectEl.setAttribute('rotation','90 180 0');
-    placedObjectEl.setAttribute('position', (positionX + 1.53 * width / 10) + ' 0.015 -74.89');
+    placedObjectEl.setAttribute('position', (positionX + 1.65 * width / 10) + ' 0.015 -74.89');
   }
-  placedObjectEl.setAttribute('scale', width/10 + ' 1 1');
+  placedObjectEl.setAttribute('scale', width / 10 + ' 1 1');
   placedObjectEl.setAttribute('mixin','sidewalk-corner');
   return placedObjectEl;
 }
@@ -360,7 +360,7 @@ function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId,
   const scaleY = length / 150;
   const scaleNew = scaleX + ' ' + scaleY + ' 1';
   segmentEl.setAttribute('scale', scaleNew);
-  console.log(scaleNew);
+  //console.log(scaleNew);
   // segmentEl.setAttribute('geometry', 'height', length);
   segmentEl.setAttribute('position', positionX + ' ' + positionY + ' 0');
   // USE THESE 2 LINES FOR TEXTURE MODE:
@@ -368,7 +368,7 @@ function createSegmentElement (scaleX, positionX, positionY, rotationY, mixinId,
   segmentEl.setAttribute('mixin', mixinId + state.textures.suffix); // append suffix to mixin id to specify texture index
   segmentEl.setAttribute('text-value', meter); // append suffix to mixin id to specify texture index
   segmentEl.setAttribute('display-meter','red');
-  console.log(segmentEl)
+  //console.log(segmentEl)
   return segmentEl;
 }
 
@@ -393,6 +393,8 @@ function processSegments (segments, showStriping, length) {
 
   var leftCornerRadius = 0;
   var rightCornerRadius = 0;
+  var times = 0;
+  var l = 0;
 
   for (var i = 0; i < segments.length; i++) {
     var segmentParentEl = document.createElement('a-entity');
@@ -428,8 +430,9 @@ function processSegments (segments, showStriping, length) {
     // planting-strip divider view as public-zone [HY]
     if(segments[i].variantString === 'planting-strip') mixinId = 'public-grass';
     
+    // left corner render
     if((segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && i == 0) {
-      leftCornerRadius += segments[i].width;
+      leftCornerRadius = segments[i].width;
     }
 
     if(i != segments.length - 1 && // condition for prevent illegal access on segments[i] [HY]
@@ -439,13 +442,30 @@ function processSegments (segments, showStriping, length) {
     } else if(i != segments.length - 1 &&
       (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && leftCornerRadius != 0 && 
       (segments[i + 1].type !== 'sidewalk' && segments[i + 1].type !== 'public-zone')) {
-      const circleEl = createCornerElement((leftCornerRadius * 0.3048 / 2), leftCornerRadius, 'left');
-      segmentParentEl.append(circleEl);
+        const circleEl = createCornerElement((leftCornerRadius * 0.3048 / 2), leftCornerRadius, 'left');
+        segmentParentEl.append(circleEl);
+        console.log(leftCornerRadius);
     }
 
-    if((segments[i].type === 'sidewalk' || segments[i].type === 'public-zone') && i == segments.length - 1) {
-      const circleEl = createCornerElement(positionX, segments[i].width, 'right');
-      segmentParentEl.append(circleEl);
+    // right corner render
+    if(i != 0 && // condition for prevent illegal access on segments[i] [HY]
+      (segments[i - 1].type !== 'sidewalk' && segments[i - 1].type !== 'public-zone') && 
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
+        rightCornerRadius = segments[i].width;
+        times = 1;
+        l = positionX;
+    }else if(
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')
+    ) {
+        rightCornerRadius += segments[i].width;
+        times ++;
+        l += positionX;
+    }
+    if(i == segments.length - 1 &&
+      (segments[i].type === 'sidewalk' || segments[i].type === 'public-zone')) {
+        const circleEl = createCornerElement((l / times), rightCornerRadius, 'right');
+        segmentParentEl.append(circleEl);
+        console.log(rightCornerRadius);
     }
 
     // look at segment type and variant(s) to determine specific cases
