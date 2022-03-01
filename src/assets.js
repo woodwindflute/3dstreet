@@ -138,13 +138,14 @@
   
           <!-- grounds -->
           <img id="grass-texture" src="${assetUrl}assets/materials/TexturesCom_Grass0052_1_seamless_S.jpg" crossorigin="anonymous">
+          <img id="grass2-texture" src="${assetUrl}assets/materials/TexturesCom_Grass0052_2_seamless_S.jpg" crossorigin="anonymous">
           <img id="parking-lot-texture" src="${assetUrl}assets/materials/TexturesCom_Roads0111_1_seamless_S.jpg" crossorigin="anonymous">
           <img id="asphalt-texture" src="${assetUrl}assets/materials/TexturesCom_AsphaltDamaged0057_1_seamless_S.jpg" crossorigin="anonymous">
 
           <a-mixin id="public-grass-t1" geometry="width:0.3;height:150;primitive:plane" material="repeat:1 150;offset:0.415 0;normalTextureOffset:0.415 0;src:#grass-texture;normalTextureRepeat:0.21 150;normalMap:#grass-texture"></a-mixin>
           <a-mixin id="public-sidewalk-t1" geometry="width:0.3;height:150;primitive:plane" material="repeat:1.5 75;src:#seamless-sidewalk;"></a-mixin>
 
-          <a-mixin id="ground-grass" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#grass-texture;repeat:5 5;roughness:1"></a-mixin>
+          <a-mixin id="ground-grass" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#grass2-texture;repeat:5 5;roughness:1"></a-mixin>
           <a-mixin id="ground-parking-lot" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#parking-lot-texture;repeat:2 4;roughness:1"></a-mixin>
           <a-mixin id="ground-asphalt" rotation="-90 0 0" geometry="primitive:plane;height:150;width:150" material="src:#asphalt-texture;repeat:5 5;roughness:1"></a-mixin>
   
